@@ -1,6 +1,17 @@
 <template>
 	<view>
 		
+		<!-- 写一些文字 -->
+		
+		<view class="text-box" scroll-y="true">
+			<text class="flex flex-direction">
+				在这里,
+				您可以记录每一天的点滴琐事,
+				沉淀每一刻的生活感悟,
+				分享每一秒的喜怒哀乐。
+			 </text>
+		</view>
+		
 		<!-- 轮播图  start -->
 		<!-- <view  class="swiper">
 			<view class="swiper-box">
@@ -22,13 +33,13 @@
 		<!-- 轮播图 end -->
 		
 		<!-- 文字滚动 start-->
-		<view>
+		<!-- <view>
 			<uni-notice-bar scrollable="true" single="true" :text="notice_text"></uni-notice-bar>
-		</view>
+		</view> -->
 		<!-- 文字滚动 end-->
 		
 		<!-- 日志数量 start -->
-		<view  class="hm-visits-card">
+		<!-- <view  class="hm-visits-card">
 			<view class="cardClass">
 				<rich-text :nodes="nodes" class="text"></rich-text>
 				<uni-badge  type="warning"	 :text="public_num"></uni-badge>
@@ -38,7 +49,7 @@
 				<rich-text :nodes="nodes_to" class="text"></rich-text>
 				<uni-badge  type="warning"	 :text="protected_num"></uni-badge>
 			</view>
-		</view>
+		</view> -->
 		<!-- 日志数量 end -->
 		
 	
@@ -265,5 +276,22 @@
 			height: 30upx;
 		}
 	}
+}
+
+.text-box{
+	    margin-bottom: 20px;
+	    padding: 20px 0;
+	    display: flex;
+	    min-height: 150px;
+	    background-color: #fff;
+	    -webkit-box-pack: center;
+	    -webkit-justify-content: center;
+	    justify-content: center;
+	    -webkit-box-align: center;
+	    align-items: center;
+	    text-align: center;
+	    font-size: 15px;
+	    color: #353535;
+	    line-height: 1.8;
 }
 </style>
