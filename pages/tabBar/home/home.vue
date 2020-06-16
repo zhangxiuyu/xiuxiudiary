@@ -2,7 +2,7 @@
 	<view>
 		
 		<!-- 轮播图  start -->
-		<view  class="swiper">
+		<!-- <view  class="swiper">
 			<view class="swiper-box">
 				<swiper circular="true" autoplay="true" @change="swiperChange">
 					<swiper-item v-for="swiper in swiperList" :key="swiper.id">
@@ -18,7 +18,7 @@
 					></view>
 				</view>
 			</view>
-		</view>
+		</view> -->
 		<!-- 轮播图 end -->
 		
 		<!-- 文字滚动 start-->
