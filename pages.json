@@ -3,13 +3,19 @@
 		{
 			"path": "pages/tabBar/home/home",
 			"style": {
-				"navigationBarTitleText": "首页"
+				"navigationBarTitleText": "秀秀首页"
 			}
 		},
 		{
 			"path": "pages/tabBar/diary/diary",
 			"style": {
-				"navigationBarTitleText": "日记"
+				"navigationBarTitleText": "秀秀日记"
+			}
+		},
+		{
+			"path": "pages/diary/index",
+			"style": {
+				"navigationBarTitleText": "日记详情"
 			}
 		},
 		{
@@ -21,7 +27,7 @@
 		{
 			"path": "pages/tabBar/user/user",
 			"style": {
-				"navigationBarTitleText": "我的"
+				"navigationBarTitleText": "秀秀我的"
 			}
 		}
 	],

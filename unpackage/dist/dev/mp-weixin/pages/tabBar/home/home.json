@@ -1,4 +1,8 @@
 {
-  "navigationBarTitleText": "首页",
-  "usingComponents": {}
+  "navigationBarTitleText": "秀秀首页",
+  "usingComponents": {
+    "uni-notice-bar": "/components/uni-notice-bar/uni-notice-bar",
+    "uni-badge": "/components/uni-badge/uni-badge",
+    "uni-card": "/components/uni-card/uni-card"
+  }
 }

@@ -4,12 +4,13 @@
     "ignore": []
   },
   "setting": {
-    "urlCheck": true
+    "urlCheck": true,
+    "es6": false
   },
   "compileType": "miniprogram",
   "libVersion": "2.9.2",
-  "appid": "touristappid",
-  "projectname": "xiuxiudiary",
+  "appid": "wxb7b38aed3b5fb574",
+  "projectname": "秀秀日记吧",
   "condition": {
     "search": {
       "current": -1,
