@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "秀秀首页",
+  "navigationBarTitleText": "你我皆过客",
   "usingComponents": {
     "uni-card": "/components/uni-card/uni-card",
     "uni-badge": "/components/uni-badge/uni-badge",

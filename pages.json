@@ -3,7 +3,7 @@
 		{
 			"path": "pages/tabBar/home/home",
 			"style": {
-				"navigationBarTitleText": "秀秀首页"
+				"navigationBarTitleText": "你我皆过客"
 			}
 		},
 		{
@@ -34,24 +34,24 @@
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
 		"navigationBarTitleText": "uni-app",
-		"navigationBarBackgroundColor": "#007AFF",
+		"navigationBarBackgroundColor": "#59c88d",
 		"backgroundColor": "#FFFFFF"
 	},
 	"tabBar": {
-		"color": "orange",
-		"selectedColor": "orange",
+		"color": "#59c88d",
+		"selectedColor": "#59c88d",
 		"borderStyle": "black",
 		"backgroundColor": "#ffffff",
 		"list": [{
 				"pagePath": "pages/tabBar/home/home",
-				"iconPath": "static/img/tabBar/home.png",
-				"selectedIconPath": "static/img/tabBar/home-on.png",
-				"text": "首页"
+				"iconPath": "static/img/tabBar/category.png",
+				"selectedIconPath": "static/img/tabBar/category-on.png",
+				"text": "过客"
 			},
 			{
 				"pagePath": "pages/tabBar/diary/diary",
-				"iconPath": "static/img/tabBar/category.png",
-				"selectedIconPath": "static/img/tabBar/category-on.png",
+				"iconPath": "static/img/tabBar/home.png",
+				"selectedIconPath": "static/img/tabBar/home-on.png",
 				"text": "日记"
 			},
 			{

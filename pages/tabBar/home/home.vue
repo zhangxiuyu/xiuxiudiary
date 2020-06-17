@@ -5,10 +5,17 @@
 		
 		<view class="text-box" scroll-y="true">
 			<text class="flex flex-direction">
-				在这里,
-				您可以记录每一天的点滴琐事,
-				沉淀每一刻的生活感悟,
-				分享每一秒的喜怒哀乐。
+				我打江南走过
+				那等在季节里的容颜如莲花的开落
+				
+				东风不来，三月的柳絮不飞
+				你的心如小小寂寞的城
+				恰若青石的街道向晚
+				跫音不响，三月的春帷不揭
+				你的心是小小的窗扉紧掩
+				
+				我达达的马蹄是美丽的错误
+				我不是归人，是个过客……
 			 </text>
 		</view>
 		
@@ -56,13 +63,14 @@
 		
 		<!-- 日记列表 start -->
 		<view class="goods-list">
-			<view class="title" style="color: orange;">
+			<view class="title" style="color: #59c88d;">
 				<image src="/static/img/hua.png"></image>
 				秀秀最近分享
 				<image src="/static/img/hua.png"></image>
 			</view>
 			<view class="product-list">
 				<view
+				
 					class="product"
 					v-for="product in productList"
 					:key="product.r_id"
@@ -70,7 +78,7 @@
 				>
 			
 					<!-- 标题卡片模式 -->
-					<uni-card title="Dcloud" mode="title" :is-shadow="true" :thumbnail=product.img :extra=product.time :note=product.num>
+					<uni-card :title=product.name mode="title"  :is-shadow="true" :thumbnail=product.img :extra=product.time>
 					    {{ product.con }}
 					</uni-card>
 				</view>
@@ -136,6 +144,7 @@
 						r_id:1,
 						img:"https://img-cdn-qiniu.dcloud.net.cn/uniapp/images/muwu.jpg",
 						time:"2020-09-15 14:12:12",
+						name:"张三",
 						con:"那是一个秋意盎然、金风送爽的日子,我和父母一起来到了位于上师大旁的康健园.一踏进公园,一股浓郁的桂香扑鼻而来,泌人心脾,让我心旷神怡,只见一朵朵开得正烈的金色桂花,迎风而立,仿佛在向我招手.我们追着这桂香,走进了清幽的公园.",
 						num:"点击数：123",
 					},
@@ -143,6 +152,7 @@
 						r_id:2,
 						img:"https://img-cdn-qiniu.dcloud.net.cn/uniapp/images/muwu.jpg",
 						time:"2020-09-15 14:12:12",
+						name:"张三",
 						con:"那是一个秋意盎.",
 						num:"点击数：123",
 					},
@@ -150,6 +160,7 @@
 						r_id:3,
 						img:"https://img-cdn-qiniu.dcloud.net.cn/uniapp/images/muwu.jpg",
 						time:"2020-09-15 14:12:12",
+						name:"张三",
 						con:"那是一个秋意盎.",
 						num:"点击数：123",
 					}
@@ -254,7 +265,7 @@
 	height: 46.75rpx;
 	line-height: 46.75rpx;
 	white-space: nowrap;
-	color: #858997;
+	color: #59c88d;
 	font-size: 31.17rpx;
 	font-weight: 400;
 
@@ -268,7 +279,7 @@
 		justify-content: center;
 		align-items: center;
 		height: 80upx;
-		color: #f47825;
+		color: #59c88d;
 		font-size: 30upx;
 		margin-top: 10upx;
 		image {
@@ -291,7 +302,7 @@
 	    align-items: center;
 	    text-align: center;
 	    font-size: 15px;
-	    color: #353535;
+	    color: #59c88d;
 	    line-height: 1.8;
 }
 </style>

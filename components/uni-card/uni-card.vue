@@ -173,6 +173,7 @@
 		height: 40px;
 		overflow: hidden;
 		border-radius: 5px;
+		
 	}
 
 	.uni-card__title-header-image {
@@ -197,6 +198,7 @@
 		font-size: 28rpx;
 		line-height: 22px;
 		lines: 1;
+		color: #59c88d;
 	}
 
 	.uni-card__title-content-extra {
