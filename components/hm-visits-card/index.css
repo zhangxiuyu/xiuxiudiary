@@ -1,0 +1,125 @@
+.hm-visits-card {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+  width: 385px;
+  height: 233px;
+}
+
+.cardClass {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 20px;
+  box-shadow: 0px 10px 30px rgba(209, 213, 223, 0.5);
+  background-color: #ffffff;
+  width: 370px;
+  height: 193px;
+}
+
+.titleClass {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-right: 32px;
+  padding-left: 30px;
+  width: 370px;
+}
+
+.text {
+  opacity: 1;
+  width: 64px;
+  height: 24px;
+  line-height: 24px;
+  white-space: nowrap;
+  color: #858997;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.img {
+  margin-top: 10px;
+  width: 18px;
+  height: 4px;
+}
+
+.body {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 29px;
+  width: 369px;
+}
+
+.outer {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  height: 80px;
+}
+
+.wrap {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  margin-top: 3px;
+  height: 21px;
+}
+
+.jiantouimg {
+  margin-left: 7px;
+  width: 12px;
+  height: 12px;
+}
+
+.num {
+  opacity: 1;
+  margin-left: 10px;
+  width: 48px;
+  height: 21px;
+  line-height: 21px;
+  white-space: nowrap;
+  color: #00cd98;
+  font-family: Helvetica;
+  font-size: 14px;
+  font-weight: normal;
+}
+
+.block {
+  display: flex;
+  flex-direction: row;
+  margin-top: 16px;
+}
+
+.nums {
+  opacity: 1;
+  width: 107px;
+  height: 40px;
+  line-height: 40px;
+  white-space: nowrap;
+  color: #15181a;
+  font-family: Helvetica;
+  font-size: 32px;
+  font-weight: normal;
+}
+
+.unit {
+  opacity: 1;
+  margin-left: 28px;
+  width: 32px;
+  height: 40px;
+  line-height: 40px;
+  white-space: nowrap;
+  color: #15181a;
+  font-size: 32px;
+  font-weight: 400;
+}
+
+.shopLogo {
+  margin-left: 3px;
+  width: 140px;
+  height: 70px;
+}
