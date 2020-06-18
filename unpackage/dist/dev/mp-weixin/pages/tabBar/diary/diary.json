@@ -1,4 +1,8 @@
 {
   "navigationBarTitleText": "秀秀日记",
-  "usingComponents": {}
+  "usingComponents": {
+    "uni-fab": "/components/uni-fab/uni-fab",
+    "timeline": "/components/chenbin-timeline/timeLine",
+    "timeline-item": "/components/chenbin-timeline/timelineItem"
+  }
 }

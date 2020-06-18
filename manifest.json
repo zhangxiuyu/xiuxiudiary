@@ -78,7 +78,7 @@
         /* 小程序特有相关 */
         "appid" : "wxb7b38aed3b5fb574",
         "setting" : {
-            "urlCheck" : true,
+            "urlCheck" : false,
             "es6" : false
         },
         "permission" : {

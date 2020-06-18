@@ -26,56 +26,9 @@
 				<!-- <view class="signature" @tap="toSetting">{{user.signature}}</view> -->
 				<button size='mini' class="sys_btn" open-type="getUserInfo" lang="zh_CN" @getuserinfo="appLoginWx">{{user.username != "" && user.username != undefined ? "" : "登录"}}</button>
 			</view>
-			<!-- 二维码按钮 -->
-			<!-- <view class="erweima" @tap="toMyQR">
-				<view class="icon qr"></view>
-			</view> -->
+	
 		</view>
-		<!-- VIP banner -->
-		<!-- <view class="VIP">
-			<view class="img">
-				<image src="/static/img/VIP.png"></image>
-			</view>
-			<view class="title">开通VIP会员</view>
-			<view class="tis">会员特权</view>
-		</view> -->
-		<!-- 订单-余额 -->
-		<!-- <view class="order"> -->
-			<!-- 订单类型 -->
-<!-- 			<view class="list">
-				<view class="box" v-for="(row,index) in orderList" :key="index" @tap="toOrderList(index)">
-					<view class="img">
-						<view class="icon" :class="row.icon"></view>
-					</view>
-					<view class="text">{{row.text}}</view>
-				</view>
-			</view> -->
-			<!-- 余额 -->
-			<!-- <view class="balance-info">
-				<view class="left">
-					<view class="box">
-						<view class="num">{{user.integral}}</view>
-						<view class="text">积分</view>
-					</view>
-					<view class="box">
-						<view class="num">{{user.envelope}}</view>
-						<view class="text">佣金</view>
-					</view>
-					<view class="box">
-						<view class="num">{{user.balance}}</view>
-						<view class="text">余额</view>
-					</view>
-				</view>
-				<view class="right">
-					<view class="box" @tap="toDeposit">
-						<view class="img">
-							<view class="icon chongzhi"></view>
-						</view>
-						<view class="text">充值</view>
-					</view>
-				</view>
-			</view>
-		</view> -->
+	
 		<!-- 工具栏 -->
 		<view class="toolbar">
 			<view class="title">我的工具栏</view>
@@ -88,13 +41,6 @@
 				</view>
 			</view>
 		</view>
-	<!-- 	<view class="toolbar">
-				<view class="title">我的工具栏</view>
-				<view class="list">
-					<button type="primary" size='mini' open-type='contact'>联系秀秀</button>
-				</view>
-			</view> -->
-		<!-- 占位 -->
 		<view class="place-bottom"></view>
 	</view>
 </template>
@@ -120,17 +66,6 @@ import *as http from "@/pages/tabBar/user/api.js"
 				// 工具栏列表
 				mytoolbarList:[
 					{url:'../../user/keep/keep',text:'我的收藏',img:'/static/img/user/point.png'},
-					// {url:'../../user/coupon/coupon',text:'优惠券',img:'/static/img/user/quan.png'}, 
-					// {url:'',text:'新客豪礼',img:'/static/img/user/renw.png'},
-					// {url:'',text:'领红包',img:'/static/img/user/momey.png'},
-					
-					// {url:'../../user/address/address',text:'收货地址',img:'/static/img/user/addr.png'},
-					// {url:'',text:'账户安全',img:'/static/img/user/security.png'},
-					// {url:'',text:'银行卡',img:'/static/img/user/bank.png'},
-					// {url:'',text:'抽奖',img:'/static/img/user/choujiang.png'},
-					// {text:'客服',img:'/static/img/user/kefu.png'},
-					// {text:'签到',img:'/static/img/user/mingxi.png'}
-					
 				]
 			}
 		},
@@ -165,24 +100,6 @@ import *as http from "@/pages/tabBar/user/api.js"
 			    }
 			});
 
-		},
-
-		onShow(){
-			uni.getStorage({
-				key: 'UserInfo',
-				success: (res)=>{
-					if(!res.data){
-						if(this.isfirst){
-							//this.toLogin();
-						}
-						return ;
-					}
-					this.user = res.data;
-				},
-				fail:(e)=>{
-					//this.toLogin(); 
-				}
-			});
 		},
 		methods: {
 			toSetting(){
@@ -232,7 +149,17 @@ import *as http from "@/pages/tabBar/user/api.js"
 											avatarUrl:info.userInfo.avatarUrl,
 										}).then(res => {
 											console.log(1111)
-											console.log()
+											console.log(res)
+											
+											// 这里写入token
+											uni.setStorage({
+											    key: 'token',
+											    data: res,
+											    success: function () {
+											        console.log('user 写入');
+											    }
+											});
+											
 										}).catch(err => {
 											console.log(3333)
 										})

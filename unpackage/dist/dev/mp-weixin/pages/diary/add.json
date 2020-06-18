@@ -1,4 +1,6 @@
 {
   "navigationBarTitleText": "新增日记",
-  "usingComponents": {}
+  "usingComponents": {
+    "myeditor": "/components/robin-editor/editor"
+  }
 }

@@ -46,7 +46,15 @@ const http = async ({
 			} else if (res[1].data.code === 201) {
 				reject(res[1].data.message)
 			} else if (res[1].data.code === 202) {
-				uni.$emit('showlogin')
+				
+				// 这里移除 用户信息 
+				uni.removeStorage({
+				    key: 'userInfo',
+				    success: function (res) {
+				        console.log('success');
+				    }
+				});
+		
 				reject('登录身份失效')
 			}
 		}).catch(err => {
