@@ -94,7 +94,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
 var components = {
   uniFab: function() {
-    return __webpack_require__.e(/*! import() | components/uni-fab/uni-fab */ "components/uni-fab/uni-fab").then(__webpack_require__.bind(null, /*! @/components/uni-fab/uni-fab.vue */ 76))
+    return __webpack_require__.e(/*! import() | components/uni-fab/uni-fab */ "components/uni-fab/uni-fab").then(__webpack_require__.bind(null, /*! @/components/uni-fab/uni-fab.vue */ 77))
   }
 }
 var render = function() {
@@ -134,7 +134,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var timeline = function timeline() {__webpack_require__.e(/*! require.ensure | components/chenbin-timeline/timeLine */ "components/chenbin-timeline/timeLine").then((function () {return resolve(__webpack_require__(/*! @/components/chenbin-timeline/timeLine.vue */ 83));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var timelineItem = function timelineItem() {__webpack_require__.e(/*! require.ensure | components/chenbin-timeline/timelineItem */ "components/chenbin-timeline/timelineItem").then((function () {return resolve(__webpack_require__(/*! @/components/chenbin-timeline/timelineItem.vue */ 90));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var uniFab = function uniFab() {__webpack_require__.e(/*! require.ensure | components/uni-fab/uni-fab */ "components/uni-fab/uni-fab").then((function () {return resolve(__webpack_require__(/*! @/components/uni-fab/uni-fab.vue */ 76));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var timeline = function timeline() {__webpack_require__.e(/*! require.ensure | components/chenbin-timeline/timeLine */ "components/chenbin-timeline/timeLine").then((function () {return resolve(__webpack_require__(/*! @/components/chenbin-timeline/timeLine.vue */ 84));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var timelineItem = function timelineItem() {__webpack_require__.e(/*! require.ensure | components/chenbin-timeline/timelineItem */ "components/chenbin-timeline/timelineItem").then((function () {return resolve(__webpack_require__(/*! @/components/chenbin-timeline/timelineItem.vue */ 91));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var uniFab = function uniFab() {__webpack_require__.e(/*! require.ensure | components/uni-fab/uni-fab */ "components/uni-fab/uni-fab").then((function () {return resolve(__webpack_require__(/*! @/components/uni-fab/uni-fab.vue */ 77));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 
 

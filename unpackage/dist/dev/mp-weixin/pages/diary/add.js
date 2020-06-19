@@ -128,7 +128,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var myeditor = function myeditor() {__webpack_require__.e(/*! require.ensure | components/robin-editor/editor */ "components/robin-editor/editor").then((function () {return resolve(__webpack_require__(/*! @/components/robin-editor/editor.vue */ 104));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
 
 
 
@@ -145,10 +145,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+var http = _interopRequireWildcard(__webpack_require__(/*! @/pages/diary/api.js */ 41));function _getRequireWildcardCache() {if (typeof WeakMap !== "function") return null;var cache = new WeakMap();_getRequireWildcardCache = function _getRequireWildcardCache() {return cache;};return cache;}function _interopRequireWildcard(obj) {if (obj && obj.__esModule) {return obj;}if (obj === null || typeof obj !== "object" && typeof obj !== "function") {return { default: obj };}var cache = _getRequireWildcardCache();if (cache && cache.has(obj)) {return cache.get(obj);}var newObj = {};var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;for (var key in obj) {if (Object.prototype.hasOwnProperty.call(obj, key)) {var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;if (desc && (desc.get || desc.set)) {Object.defineProperty(newObj, key, desc);} else {newObj[key] = obj[key];}}}newObj.default = obj;if (cache) {cache.set(obj, newObj);}return newObj;}var myeditor = function myeditor() {__webpack_require__.e(/*! require.ensure | components/robin-editor/editor */ "components/robin-editor/editor").then((function () {return resolve(__webpack_require__(/*! @/components/robin-editor/editor.vue */ 105));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 {
   data: function data() {
     return {
-      html: "请开始你的表演",
+      html: "",
       tools: ['bold', 'italic', 'underline', 'align-left', 'align-center', 'align-right', 'font', 'clear'] };
 
   },
@@ -158,12 +159,46 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     // 点击发布
     saveEditor: function saveEditor(res) {
-      console.log(res);
+      var html = res.html;
+      var text_data = res.text;
+      // text  截取13个中文字 作为列表显示标题使用
+      var sub_text = function sub_text(str) {
+        var start = 0;
+        var n = 24;
+        if (str.replace(/[\u4e00-\u9fa5]/g, '**').length <= n) {
+          return str;
+        }
+        var len = 0;
+        var tmpStr = '';
+        for (var i = start; i < str.length; i++) {// 遍历字符串
+          if (/[\u4e00-\u9fa5]/.test(str[i])) {// 中文 长度为两字节
+            len += 2;
+          } else {
+            len += 1;
+          }
+          if (len > n) {
+            break;
+          } else {
+            tmpStr += str[i];
+          }
+        }
+        return tmpStr;
+      };
+      text_data = sub_text(text_data);
+
+      http.diaryAdd({
+        text_data: text_data,
+        html: html }).
+      then(function (res) {
+        console.log(res);
+
+      }).catch(function (err) {
+        console.log('添加失败');
+      });
+
     },
     // 点击取消
     hideEditor: function hideEditor() {
-      console.log(222);
-      // 取消当前页面跳转我的页面
       uni.navigateBack();
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))

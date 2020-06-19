@@ -757,7 +757,7 @@ function initData(vueOptions, context) {
     try {
       data = data.call(context); // 支持 Vue.prototype 上挂的数据
     } catch (e) {
-      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data);
       }
     }
@@ -1693,7 +1693,7 @@ function normalizeComponent (
 
 /***/ }),
 
-/***/ 116:
+/***/ 117:
 /*!*********************************************************!*\
   !*** C:/html/xiuxiudiary/components/uni-icons/icons.js ***!
   \*********************************************************/
@@ -7367,7 +7367,7 @@ function type(obj) {
 
 function flushCallbacks$1(vm) {
     if (vm.__next_tick_callbacks && vm.__next_tick_callbacks.length) {
-        if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+        if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:flushCallbacks[' + vm.__next_tick_callbacks.length + ']');
@@ -7388,14 +7388,14 @@ function nextTick$1(vm, cb) {
     //1.nextTick 之前 已 setData 且 setData 还未回调完成
     //2.nextTick 之前存在 render watcher
     if (!vm.__next_tick_pending && !hasRenderWatcher(vm)) {
-        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:nextVueTick');
         }
         return nextTick(cb, vm)
     }else{
-        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance$1 = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance$1.is || mpInstance$1.route) + '][' + vm._uid +
                 ']:nextMPTick');
@@ -7471,7 +7471,7 @@ var patch = function(oldVnode, vnode) {
     });
     var diffData = this.$shouldDiffData === false ? data : diff(data, mpData);
     if (Object.keys(diffData).length) {
-      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + this._uid +
           ']差量更新',
           JSON.stringify(diffData));
@@ -7907,29 +7907,29 @@ module.exports = g;
 
 /***/ }),
 
-/***/ 47:
-/*!****************************************************!*\
-  !*** C:/html/xiuxiudiary/pages/tabBar/user/api.js ***!
-  \****************************************************/
+/***/ 41:
+/*!**********************************************!*\
+  !*** C:/html/xiuxiudiary/pages/diary/api.js ***!
+  \**********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.userCode = void 0;var http = _interopRequireWildcard(__webpack_require__(/*! ../../../utils/service.js */ 48));function _getRequireWildcardCache() {if (typeof WeakMap !== "function") return null;var cache = new WeakMap();_getRequireWildcardCache = function _getRequireWildcardCache() {return cache;};return cache;}function _interopRequireWildcard(obj) {if (obj && obj.__esModule) {return obj;}if (obj === null || typeof obj !== "object" && typeof obj !== "function") {return { default: obj };}var cache = _getRequireWildcardCache();if (cache && cache.has(obj)) {return cache.get(obj);}var newObj = {};var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;for (var key in obj) {if (Object.prototype.hasOwnProperty.call(obj, key)) {var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;if (desc && (desc.get || desc.set)) {Object.defineProperty(newObj, key, desc);} else {newObj[key] = obj[key];}}}newObj.default = obj;if (cache) {cache.set(obj, newObj);}return newObj;}
+Object.defineProperty(exports, "__esModule", { value: true });exports.diaryAdd = void 0;var http = _interopRequireWildcard(__webpack_require__(/*! ../../utils/service.js */ 42));function _getRequireWildcardCache() {if (typeof WeakMap !== "function") return null;var cache = new WeakMap();_getRequireWildcardCache = function _getRequireWildcardCache() {return cache;};return cache;}function _interopRequireWildcard(obj) {if (obj && obj.__esModule) {return obj;}if (obj === null || typeof obj !== "object" && typeof obj !== "function") {return { default: obj };}var cache = _getRequireWildcardCache();if (cache && cache.has(obj)) {return cache.get(obj);}var newObj = {};var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;for (var key in obj) {if (Object.prototype.hasOwnProperty.call(obj, key)) {var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;if (desc && (desc.get || desc.set)) {Object.defineProperty(newObj, key, desc);} else {newObj[key] = obj[key];}}}newObj.default = obj;if (cache) {cache.set(obj, newObj);}return newObj;}
 
-var userCode = function userCode(data) {
+var diaryAdd = function diaryAdd(data) {
   return new Promise(function (resolve, reject) {
-    http.post('diaryUserCode', data).then(function (res) {
+    http.post('diaryAdd', data).then(function (res) {
       resolve(res);
     }).catch(function (err) {
       reject(err);
     });
   });
-};exports.userCode = userCode;
+};exports.diaryAdd = diaryAdd;
 
 /***/ }),
 
-/***/ 48:
+/***/ 42:
 /*!********************************************!*\
   !*** C:/html/xiuxiudiary/utils/service.js ***!
   \********************************************/
@@ -7937,10 +7937,8 @@ var userCode = function userCode(data) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.del = exports.put = exports.post = exports.get = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@vue/babel-preset-app/node_modules/@babel/runtime/regenerator */ 49));
-var _globalData = __webpack_require__(/*! ./globalData.js */ 52);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}var baseUrl = 'http://www.lqy.com/api/';
-
-
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.del = exports.put = exports.post = exports.get = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@vue/babel-preset-app/node_modules/@babel/runtime/regenerator */ 43));var _this = void 0;function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}var baseUrl = 'http://www.lqy.com/api/';
+// let baseUrl = 'https://www.ergouphp.com/api/'
 
 var headers = {
   formdata: {
@@ -7954,21 +7952,36 @@ var headers = {
 
 
 
-var http = /*#__PURE__*/function () {var _ref2 = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee(_ref) {var url, headertype, method, data, tokende;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
+var http = /*#__PURE__*/function () {var _ref2 = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee(_ref) {var url, headertype, method, data, token_data, that;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
             url = _ref.url,
             headertype = _ref.headertype,
             method = _ref.method,
-            data = _ref.data;_context.prev = 1;
+            data = _ref.data;
 
 
-            tokende = _globalData.token.get();
-            console.log('tokende');
-            console.log(tokende);_context.next = 7;return (
-              _globalData.token.get());case 7:headers[headertype]['Authorization'] = _context.sent;_context.next = 13;break;case 10:_context.prev = 10;_context.t0 = _context["catch"](1);
 
+            that = _this;_context.next = 4;return (
+              uni.getStorage({
+                key: 'token',
+                success: function success(res) {
+                  console.log(res);
+                  that.token_data = res.data;
+                } }));case 4:
 
-            headers[headertype]['Authorization'] = 'coco';case 13:return _context.abrupt("return",
+            console.log('12');
+            console.log(that.token_data);
 
+            console.log('12');
+
+            // console.log('tokende')
+            // console.log(tokencode)
+            // console.log(tokencode)
+            // headers[headertype]['Authorization'] = tokencode
+            // headers[headertype]['Authorization']='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC93d3cubHF5LmNvbVwvYXBpXC9kaWFyeVVzZXJDb2RlIiwiaWF0IjoxNTkyNTQ5NTk4LCJleHAiOjE1OTI1NTMxOTgsIm5iZiI6MTU5MjU0OTU5OCwianRpIjoiM3cyalp3eVQyS045WFJuQiIsInN1YiI6eyJpZCI6Miwib3BlbmlkIjoib2xxVjU1TVMzdnVxQXBwQUlTLUowN3d3QmxfdyIsInVzZXJuYW1lIjoiXHU1ZjIwXHU3OWMwXHU5NmU4IiwiYXZhdGFyIjoiaHR0cHM6XC9cL3d4LnFsb2dvLmNuXC9tbW9wZW5cL3ZpXzMyXC9EWUFJT2dxODNlcTJTN2liYldpY0dpYjFCQjY3YnZVQVF3WTVWWUp4RkYxeUkyYmxiOXlhejdyZEdGejlMRHBTRkRvM1dzcUFsaWNTQWdvaWNOeGNRMkV3enBRXC8xMzIiLCJ1cGRhdGVkX2F0IjoiMjAyMC0wNi0xOCAxNTo0MDoxNSIsImNyZWF0ZWRfYXQiOiIyMDIwLTA2LTE4IDE1OjQwOjE1In19.ui4OGudK3DuFTbz8Y1q6KloJXn1XPnhiqbP0vULRXfA'
+            // }catch(err){
+            // 	headers[headertype]['Authorization'] = 'coco'
+            // }
+            return _context.abrupt("return",
 
             new Promise(function (resolve, reject) {
               if (url.includes('http')) {
@@ -7988,10 +8001,11 @@ var http = /*#__PURE__*/function () {var _ref2 = _asyncToGenerator( /*#__PURE__*
 
                   // 这里移除 用户信息 
                   uni.removeStorage({
-                    key: 'userInfo',
-                    success: function success(res) {
-                      console.log('success');
-                    } });
+                    key: 'userInfo' });
+
+                  // 这里移除 token
+                  uni.removeStorage({
+                    key: 'token' });
 
 
                   reject('登录身份失效');
@@ -7999,7 +8013,7 @@ var http = /*#__PURE__*/function () {var _ref2 = _asyncToGenerator( /*#__PURE__*
               }).catch(function (err) {
                 reject(err);
               });
-            }));case 14:case "end":return _context.stop();}}}, _callee, null, [[1, 10]]);}));return function http(_x) {return _ref2.apply(this, arguments);};}();
+            }));case 8:case "end":return _context.stop();}}}, _callee);}));return function http(_x) {return _ref2.apply(this, arguments);};}();
 
 
 var get = function get(url, data) {
@@ -8043,18 +8057,18 @@ var del = function del(url, data) {var headertype = arguments.length > 2 && argu
 
 /***/ }),
 
-/***/ 49:
+/***/ 43:
 /*!*********************************************************************************************!*\
   !*** ./node_modules/@vue/babel-preset-app/node_modules/@babel/runtime/regenerator/index.js ***!
   \*********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! regenerator-runtime */ 50);
+module.exports = __webpack_require__(/*! regenerator-runtime */ 44);
 
 /***/ }),
 
-/***/ 50:
+/***/ 44:
 /*!************************************************************!*\
   !*** ./node_modules/regenerator-runtime/runtime-module.js ***!
   \************************************************************/
@@ -8085,7 +8099,7 @@ var oldRuntime = hadRuntime && g.regeneratorRuntime;
 // Force reevalutation of runtime.js.
 g.regeneratorRuntime = undefined;
 
-module.exports = __webpack_require__(/*! ./runtime */ 51);
+module.exports = __webpack_require__(/*! ./runtime */ 45);
 
 if (hadRuntime) {
   // Restore the original runtime.
@@ -8102,7 +8116,7 @@ if (hadRuntime) {
 
 /***/ }),
 
-/***/ 51:
+/***/ 45:
 /*!*****************************************************!*\
   !*** ./node_modules/regenerator-runtime/runtime.js ***!
   \*****************************************************/
@@ -8834,23 +8848,25 @@ if (hadRuntime) {
 
 /***/ }),
 
-/***/ 52:
-/*!***********************************************!*\
-  !*** C:/html/xiuxiudiary/utils/globalData.js ***!
-  \***********************************************/
+/***/ 53:
+/*!****************************************************!*\
+  !*** C:/html/xiuxiudiary/pages/tabBar/user/api.js ***!
+  \****************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.get = void 0;var get = function get(token) {
-  uni.getStorage({
-    key: 'token',
-    success: function success(res) {
-      return res.data;
-    } });
+Object.defineProperty(exports, "__esModule", { value: true });exports.userCode = void 0;var http = _interopRequireWildcard(__webpack_require__(/*! ../../../utils/service.js */ 42));function _getRequireWildcardCache() {if (typeof WeakMap !== "function") return null;var cache = new WeakMap();_getRequireWildcardCache = function _getRequireWildcardCache() {return cache;};return cache;}function _interopRequireWildcard(obj) {if (obj && obj.__esModule) {return obj;}if (obj === null || typeof obj !== "object" && typeof obj !== "function") {return { default: obj };}var cache = _getRequireWildcardCache();if (cache && cache.has(obj)) {return cache.get(obj);}var newObj = {};var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;for (var key in obj) {if (Object.prototype.hasOwnProperty.call(obj, key)) {var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;if (desc && (desc.get || desc.set)) {Object.defineProperty(newObj, key, desc);} else {newObj[key] = obj[key];}}}newObj.default = obj;if (cache) {cache.set(obj, newObj);}return newObj;}
 
-};exports.get = get;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+var userCode = function userCode(data) {
+  return new Promise(function (resolve, reject) {
+    http.post('diaryUserCode', data).then(function (res) {
+      resolve(res);
+    }).catch(function (err) {
+      reject(err);
+    });
+  });
+};exports.userCode = userCode;
 
 /***/ })
 

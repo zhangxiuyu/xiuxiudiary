@@ -101,6 +101,20 @@ import *as http from "@/pages/tabBar/user/api.js"
 			});
 
 		},
+		onShow() {
+			const that = this;
+			uni.getStorage({
+				key: 'userInfo',
+				fail:function(){
+					that.user ={
+						username:'',
+						face:''
+					}
+				}
+			});
+			
+			
+		},
 		methods: {
 			toSetting(){
 				uni.navigateTo({
@@ -148,7 +162,6 @@ import *as http from "@/pages/tabBar/user/api.js"
 											username:info.userInfo.nickName,
 											avatarUrl:info.userInfo.avatarUrl,
 										}).then(res => {
-											console.log(1111)
 											console.log(res)
 											
 											// 这里写入token
@@ -179,6 +192,7 @@ import *as http from "@/pages/tabBar/user/api.js"
 				});
 				//#endif
 			}
+			
 		}
 	} 
 </script>
