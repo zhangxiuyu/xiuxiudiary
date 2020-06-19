@@ -7937,7 +7937,7 @@ var diaryAdd = function diaryAdd(data) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.del = exports.put = exports.post = exports.get = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@vue/babel-preset-app/node_modules/@babel/runtime/regenerator */ 43));var _this = void 0;function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}var baseUrl = 'http://www.lqy.com/api/';
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.del = exports.put = exports.post = exports.get = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@vue/babel-preset-app/node_modules/@babel/runtime/regenerator */ 43));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}var baseUrl = 'http://www.lqy.com/api/';
 // let baseUrl = 'https://www.ergouphp.com/api/'
 
 var headers = {
@@ -7952,36 +7952,19 @@ var headers = {
 
 
 
-var http = /*#__PURE__*/function () {var _ref2 = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee(_ref) {var url, headertype, method, data, token_data, that;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
+var http = /*#__PURE__*/function () {var _ref2 = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee(_ref) {var url, headertype, method, data;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
             url = _ref.url,
             headertype = _ref.headertype,
             method = _ref.method,
             data = _ref.data;
 
+            try {
+              headers[headertype]['Authorization'] = uni.getStorageSync('token');
+              // headers[headertype]['Authorization']='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC93d3cubHF5LmNvbVwvYXBpXC9kaWFyeVVzZXJDb2RlIiwiaWF0IjoxNTkyNTQ5NTk4LCJleHAiOjE1OTI1NTMxOTgsIm5iZiI6MTU5MjU0OTU5OCwianRpIjoiM3cyalp3eVQyS045WFJuQiIsInN1YiI6eyJpZCI6Miwib3BlbmlkIjoib2xxVjU1TVMzdnVxQXBwQUlTLUowN3d3QmxfdyIsInVzZXJuYW1lIjoiXHU1ZjIwXHU3OWMwXHU5NmU4IiwiYXZhdGFyIjoiaHR0cHM6XC9cL3d4LnFsb2dvLmNuXC9tbW9wZW5cL3ZpXzMyXC9EWUFJT2dxODNlcTJTN2liYldpY0dpYjFCQjY3YnZVQVF3WTVWWUp4RkYxeUkyYmxiOXlhejdyZEdGejlMRHBTRkRvM1dzcUFsaWNTQWdvaWNOeGNRMkV3enBRXC8xMzIiLCJ1cGRhdGVkX2F0IjoiMjAyMC0wNi0xOCAxNTo0MDoxNSIsImNyZWF0ZWRfYXQiOiIyMDIwLTA2LTE4IDE1OjQwOjE1In19.ui4OGudK3DuFTbz8Y1q6KloJXn1XPnhiqbP0vULRXfA'
+            } catch (err) {
+              headers[headertype]['Authorization'] = 'coco';
+            }return _context.abrupt("return",
 
-
-            that = _this;_context.next = 4;return (
-              uni.getStorage({
-                key: 'token',
-                success: function success(res) {
-                  console.log(res);
-                  that.token_data = res.data;
-                } }));case 4:
-
-            console.log('12');
-            console.log(that.token_data);
-
-            console.log('12');
-
-            // console.log('tokende')
-            // console.log(tokencode)
-            // console.log(tokencode)
-            // headers[headertype]['Authorization'] = tokencode
-            // headers[headertype]['Authorization']='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC93d3cubHF5LmNvbVwvYXBpXC9kaWFyeVVzZXJDb2RlIiwiaWF0IjoxNTkyNTQ5NTk4LCJleHAiOjE1OTI1NTMxOTgsIm5iZiI6MTU5MjU0OTU5OCwianRpIjoiM3cyalp3eVQyS045WFJuQiIsInN1YiI6eyJpZCI6Miwib3BlbmlkIjoib2xxVjU1TVMzdnVxQXBwQUlTLUowN3d3QmxfdyIsInVzZXJuYW1lIjoiXHU1ZjIwXHU3OWMwXHU5NmU4IiwiYXZhdGFyIjoiaHR0cHM6XC9cL3d4LnFsb2dvLmNuXC9tbW9wZW5cL3ZpXzMyXC9EWUFJT2dxODNlcTJTN2liYldpY0dpYjFCQjY3YnZVQVF3WTVWWUp4RkYxeUkyYmxiOXlhejdyZEdGejlMRHBTRkRvM1dzcUFsaWNTQWdvaWNOeGNRMkV3enBRXC8xMzIiLCJ1cGRhdGVkX2F0IjoiMjAyMC0wNi0xOCAxNTo0MDoxNSIsImNyZWF0ZWRfYXQiOiIyMDIwLTA2LTE4IDE1OjQwOjE1In19.ui4OGudK3DuFTbz8Y1q6KloJXn1XPnhiqbP0vULRXfA'
-            // }catch(err){
-            // 	headers[headertype]['Authorization'] = 'coco'
-            // }
-            return _context.abrupt("return",
 
             new Promise(function (resolve, reject) {
               if (url.includes('http')) {
@@ -8007,13 +7990,15 @@ var http = /*#__PURE__*/function () {var _ref2 = _asyncToGenerator( /*#__PURE__*
                   uni.removeStorage({
                     key: 'token' });
 
+                  uni.showToast({
+                    title: res[1].data.message });
 
                   reject('登录身份失效');
                 }
               }).catch(function (err) {
                 reject(err);
               });
-            }));case 8:case "end":return _context.stop();}}}, _callee);}));return function http(_x) {return _ref2.apply(this, arguments);};}();
+            }));case 3:case "end":return _context.stop();}}}, _callee);}));return function http(_x) {return _ref2.apply(this, arguments);};}();
 
 
 var get = function get(url, data) {

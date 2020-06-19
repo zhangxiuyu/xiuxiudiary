@@ -60,10 +60,21 @@
 					text_data:text_data,
 					html:html
 				}).then(res => {
-					console.log(res)
+					uni.showToast({
+						title:'添加成功！',
+						duration: 2000,
+						icon:"success",
+					})
+					
+					// 添加成功之后跳转 到列表查看 
+					setTimeout(function(){
+						uni.navigateBack()
+					},2000)
 					
 				}).catch(err => {
-					console.log('添加失败')
+					uni.showToast({
+						title:'添加失败了， 请稍后重试！'
+					})
 				})
 				
 			},

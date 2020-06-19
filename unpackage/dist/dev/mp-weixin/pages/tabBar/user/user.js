@@ -301,6 +301,7 @@ var _default = { data: function data() {return { isfirst: true, headerPosition: 
                       key: 'token',
                       data: res,
                       success: function success() {
+
                         console.log('user 写入');
                       } });
 

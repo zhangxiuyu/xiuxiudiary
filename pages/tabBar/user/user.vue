@@ -169,6 +169,7 @@ import *as http from "@/pages/tabBar/user/api.js"
 											    key: 'token',
 											    data: res,
 											    success: function () {
+													
 											        console.log('user 写入');
 											    }
 											});
