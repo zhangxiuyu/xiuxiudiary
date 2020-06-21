@@ -55,27 +55,33 @@
 					return tmpStr;
 				}
 				text_data = sub_text(text_data)
+				try{
+					http.diaryAdd({
+						text_data:text_data,
+						html:html
+					}).then(res => {
+						uni.showToast({
+							title:'添加成功！',
+							duration: 2000,
+							icon:"success",
+						})
+						
+						// 添加成功之后跳转 显示一下之后，倒计时到列表查看 
+						setTimeout(function(){
+							uni.navigateBack()
+						},2000)
+						
+					}).catch(err => {
+						uni.showToast({
+							title:'添加失败了， 请稍后重试！'
+						})
+					})
+				}catch(err){
+					uni.showToast({
+						title:'添加失败！'
+					})
+				}
 				
-				http.diaryAdd({
-					text_data:text_data,
-					html:html
-				}).then(res => {
-					uni.showToast({
-						title:'添加成功！',
-						duration: 2000,
-						icon:"success",
-					})
-					
-					// 添加成功之后跳转 到列表查看 
-					setTimeout(function(){
-						uni.navigateBack()
-					},2000)
-					
-				}).catch(err => {
-					uni.showToast({
-						title:'添加失败了， 请稍后重试！'
-					})
-				})
 				
 			},
 			// 点击取消
