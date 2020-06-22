@@ -3,22 +3,16 @@
 	<view >
 		<!-- 时间线 start  -->
 		<timeline>
-			<timelineItem leftTime='2020-01-02'>
-				<view class="tripItem">
-					<view class="title">您接收了健康教育内容推送</view>
-					<view class="tips">内容：xxxx</view>
-				</view>
-			</timelineItem>
-			<timelineItem leftTime='2020-01-01'>
-				<view class="tripItem">
-					<view class="title">您接收了健康教育内容推送</view>
-					<view class="tips">内容：xxx</view>
-				</view>
-				<view class="tripItem">
-					<view class="title">您接收了健康教育内容推送</view>
-					<view class="tips">内容：xxx</view>
-				</view>
-			</timelineItem>
+			<view v-for="product in diaryList">
+				<timelineItem :leftTime="product.diary_date">
+					<view v-for="li_list in product.list" :key="li_list.id" @tap="toDiary(li_list)">
+						<view class="tripItem">
+							<view class="title">{{ li_list.title }}</view>
+							<view class="tips">{{ li_list.created_at }}</view>
+						</view>
+					</view>
+				</timelineItem>
+			</view>
 		</timeline>
 		<!-- 时间线 end  -->
 
@@ -42,6 +36,8 @@
 	// 时间线
 	import timeline from '@/components/chenbin-timeline/timeLine.vue'
 	import timelineItem from '@/components/chenbin-timeline/timelineItem.vue'
+	
+	import *as http from'@/pages/tabBar/diary/api.js'
 	
 	// 悬浮
 	import  uniFab from '@/components/uni-fab/uni-fab.vue'
@@ -71,7 +67,8 @@
 							text:'添加',
 							active:false,
 						}
-					]
+					],
+					diaryList:[]
 				}
 			},
 			methods:{
@@ -81,7 +78,35 @@
 						url: '../../diary/add'
 					});
 				}
+			},
+			onShow() {
+				http.diaryList({
+					page:1
+				}).then(res => {
+					console.log(res)
+					// uni.showToast({
+					// 	title:'添加成功！',
+					// 	duration: 2000,
+					// 	icon:"success",
+					// })
+					
+					// // 添加成功之后跳转 显示一下之后，倒计时到列表查看 
+					// setTimeout(function(){
+					// 	uni.navigateBack()
+					// },2000)
+					
+				}).catch(err => {
+					uni.showToast({
+						icon:"none",
+						title:err+'，请登录后重试！'
+					})
+				})
+				
+			},
+			onReady(){
+				// 
 			}
+			
 		
 	    }
 </script>

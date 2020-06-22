@@ -57,9 +57,10 @@
 				text_data = sub_text(text_data)
 				try{
 					http.diaryAdd({
-						text_data:text_data,
+						title:text_data,
 						html:html
 					}).then(res => {
+						console.log(res)
 						uni.showToast({
 							title:'添加成功！',
 							duration: 2000,
@@ -72,8 +73,10 @@
 						},2000)
 						
 					}).catch(err => {
+						console.log(err)
 						uni.showToast({
-							title:'添加失败了， 请稍后重试！'
+							icon:"none",
+							title:err+'，请登录后重试！'
 						})
 					})
 				}catch(err){

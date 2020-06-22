@@ -177,7 +177,6 @@
 			},
 			// 日记详情
 			toDiary(e) {
-				console.log(123);
 				// uni.showToast({ title: '商品' + e.r_id, icon: 'none' });
 				uni.navigateTo({
 					url: '../../diary/index?cid=' + e.r_id
