@@ -83,7 +83,7 @@
 				http.diaryList({
 					page:1
 				}).then(res => {
-					console.log(res)
+					diaryList
 					// uni.showToast({
 					// 	title:'添加成功！',
 					// 	duration: 2000,
