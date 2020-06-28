@@ -4,6 +4,7 @@
             <text class="article-author">{{banner.author_name}}</text>
             <text class="article-text">发表于</text>
             <text class="article-time">{{banner.published_at}}</text>
+		
         </view>
         <view class="article-content">
             <rich-text :nodes="htmlString"></rich-text>
@@ -20,6 +21,7 @@
         data() {
             return {
                 banner: {
+					title:'我的日记',
 					author_name:'zzzz',
 					published_at:'2018.1.1'
 				},
@@ -29,16 +31,18 @@
         onShareAppMessage() {
             return {
                 title: this.banner.title,
-                path: '/pages/template/list2detail-detail/list2detail-detail?detailDate=' + JSON.stringify(this.banner)
+                path: 'pages/diary/index?detailDate=' + JSON.stringify(this.banner)
             }
         },
         onLoad(event) {
             // 目前在某些平台参数会被主动 decode，暂时这样处理。
-            // try {
-            //     this.banner = JSON.parse(decodeURIComponent(event.detailDate));
-            // } catch (error) {
-            //     this.banner = JSON.parse(event.detailDate);
-            // }
+            try {
+                let detaion = JSON.parse(decodeURIComponent(event.detailDate));
+				console.log(detaion)
+            } catch (error) {
+				console.log('errrrr')
+                // this.banner = JSON.parse(event.detailDate);
+            }
 
             // //this.getDetail();
             // uni.setNavigationBarTitle({

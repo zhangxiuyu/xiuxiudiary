@@ -1,5 +1,6 @@
 {
-  "navigationBarTitleText": "秀秀日记",
+  "navigationBarTitleText": "我的日记",
+  "enablePullDownRefresh": true,
   "usingComponents": {
     "uni-fab": "/components/uni-fab/uni-fab",
     "timeline": "/components/chenbin-timeline/timeLine",

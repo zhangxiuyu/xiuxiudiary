@@ -29,6 +29,7 @@
 	methods: {
 			// 点击发布
 			saveEditor(res) {
+				
 				let html = res.html
 				let text_data = res.text
 				// text  截取13个中文字 作为列表显示标题使用
@@ -55,35 +56,79 @@
 					return tmpStr;
 				}
 				text_data = sub_text(text_data)
-				try{
-					http.diaryAdd({
-						title:text_data,
-						html:html
-					}).then(res => {
-						console.log(res)
-						uni.showToast({
-							title:'添加成功！',
-							duration: 2000,
-							icon:"success",
-						})
-						
-						// 添加成功之后跳转 显示一下之后，倒计时到列表查看 
-						setTimeout(function(){
-							uni.navigateBack()
-						},2000)
-						
-					}).catch(err => {
-						console.log(err)
-						uni.showToast({
-							icon:"none",
-							title:err+'，请登录后重试！'
-						})
-					})
-				}catch(err){
-					uni.showToast({
-						title:'添加失败！'
-					})
-				}
+				uni.showModal({
+					title: '提示',
+					content: '您是否公开您的该篇日记',
+					success: function (res) {
+						if (res.confirm) {
+							console.log('用户点击确定');
+							try{
+								http.diaryAdd({
+									title:text_data,
+									html:html,
+									public:1
+								}).then(res => {
+									console.log(res)
+									uni.showToast({
+										title:'添加成功！',
+										duration: 2000,
+										icon:"success",
+									})
+									
+									// 添加成功之后跳转 显示一下之后，倒计时到列表查看 
+									setTimeout(function(){
+										uni.navigateBack()
+									},2000)
+									
+								}).catch(err => {
+									console.log(err)
+									uni.showToast({
+										icon:"none",
+										title:err+'，请登录后重试！'
+									})
+								})
+							}catch(err){
+								uni.showToast({
+									title:'添加失败！'
+								})
+							}
+						} else if (res.cancel) {
+							console.log('用户点击取消');
+							try{
+								http.diaryAdd({
+									title:text_data,
+									html:html,
+									public:2
+								}).then(res => {
+									console.log(res)
+									uni.showToast({
+										title:'添加成功！',
+										duration: 2000,
+										icon:"success",
+									})
+									
+									// 添加成功之后跳转 显示一下之后，倒计时到列表查看 
+									setTimeout(function(){
+										uni.navigateBack()
+									},2000)
+									
+								}).catch(err => {
+									console.log(err)
+									uni.showToast({
+										icon:"none",
+										title:err+'，请登录后重试！'
+									})
+								})
+							}catch(err){
+								uni.showToast({
+									title:'添加失败！'
+								})
+							}
+						}
+					}
+				});
+				
+				
 				
 				
 			},

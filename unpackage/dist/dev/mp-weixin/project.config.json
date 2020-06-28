@@ -8,7 +8,7 @@
     "es6": false
   },
   "compileType": "miniprogram",
-  "libVersion": "2.9.2",
+  "libVersion": "",
   "appid": "wxb7b38aed3b5fb574",
   "projectname": "秀秀日记吧",
   "condition": {

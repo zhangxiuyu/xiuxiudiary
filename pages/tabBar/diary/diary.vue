@@ -68,7 +68,10 @@
 							active:false,
 						}
 					],
-					diaryList:[]
+					diaryList:[],
+					page_total:1, // 总页数
+					page:1, 	  // 当前页
+					loadingText:'加载中...', 	  
 				}
 			},
 			methods:{
@@ -80,21 +83,12 @@
 				}
 			},
 			onShow() {
+				this.page = 1;
 				http.diaryList({
-					page:1
+					page:this.page
 				}).then(res => {
-					diaryList
-					// uni.showToast({
-					// 	title:'添加成功！',
-					// 	duration: 2000,
-					// 	icon:"success",
-					// })
-					
-					// // 添加成功之后跳转 显示一下之后，倒计时到列表查看 
-					// setTimeout(function(){
-					// 	uni.navigateBack()
-					// },2000)
-					
+					this.diaryList = res.lists.reverse(); // 翻转数组
+					this.page_total = res.total
 				}).catch(err => {
 					uni.showToast({
 						icon:"none",
@@ -103,8 +97,34 @@
 				})
 				
 			},
+			onPullDownRefresh() {
+			    console.log('onPullDownRefresh'); 
+				if(this.page >= this.page_total){
+					this.loadingText = '没有了。';
+					return false;
+				}else{
+					this.page++;
+					http.diaryList({
+						page:this.page
+					}).then(res => {
+						res.lists.reverse();
+						res.lists.map(x=>{
+							this.diaryList.unshift(x);
+						})
+					}).catch(err => {
+						uni.showToast({
+							icon:"none",
+							title:err+'，请登录后重试！'
+						})
+					})
+				}
+				
+				setTimeout(function () {
+				    uni.stopPullDownRefresh();	
+				}, 500);
+			},
 			onReady(){
-				// 
+				console.log('onReady')
 			}
 			
 		
