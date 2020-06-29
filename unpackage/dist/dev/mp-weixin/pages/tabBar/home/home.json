@@ -1,5 +1,6 @@
 {
   "navigationBarTitleText": "你我皆过客",
+  "onReachBottomDistance": 60,
   "usingComponents": {
     "uni-card": "/components/uni-card/uni-card",
     "uni-badge": "/components/uni-badge/uni-badge",

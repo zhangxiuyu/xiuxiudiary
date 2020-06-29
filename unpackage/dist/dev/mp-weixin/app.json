@@ -2,7 +2,9 @@
   "pages": [
     "pages/tabBar/home/home",
     "pages/tabBar/diary/diary",
+    "pages/tabBar/diary/date",
     "pages/diary/index",
+    "pages/diary/mymi",
     "pages/diary/add",
     "pages/tabBar/user/user"
   ],

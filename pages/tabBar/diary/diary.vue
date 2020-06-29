@@ -59,12 +59,18 @@
 					horizontal:'right', //水平对齐方式。left:左对齐，right：右对齐
 					vertical:'bottom', //垂直对齐方式。bottom:下对齐，top：上对齐
 					direction:'vertical', //展开菜单显示方式。horizontal:水平显示，vertical：垂直显示
-					popMenu:false, //是否使用弹出菜单
+					popMenu:true, //是否使用弹出菜单
 					content:[
 						{
-							iconPath:'/static/img/diary/hua.png',
+							iconPath:'/static/img/diary/hua1.png',
 							selectedIconPath:'/pages/diary/index',
 							text:'添加',
+							active:false,
+						},
+						{
+							iconPath:'/static/img/diary/date.png',
+							selectedIconPath:'/pages/tabBar/diary/calendar',
+							text:'日历',
 							active:false,
 						}
 					],
@@ -76,11 +82,24 @@
 			},
 			methods:{
 				// 点击悬浮按钮之后访问处理  这里验证是否登录， 未登录 跳转到我的页面进行引导登录
-				trigger (){
+				trigger (env){
+					if(env.index == 0){
+						uni.navigateTo({
+							url: '../../diary/add'
+						});
+					}else if(env.index == 1){
+						uni.navigateTo({
+							url: './date'
+						});
+					}
+					
+				},
+				toDiary(e) {
+					// uni.showToast({ title: '商品' + e.r_id, icon: 'none' });
 					uni.navigateTo({
-						url: '../../diary/add'
+						url: '../../diary/mymi?r_id=' + e.id
 					});
-				}
+				},
 			},
 			onShow() {
 				this.page = 1;
@@ -92,7 +111,7 @@
 				}).catch(err => {
 					uni.showToast({
 						icon:"none",
-						title:err+'，请登录后重试！'
+						title:'请《我的》页面登录后重试！'
 					})
 				})
 				
@@ -114,7 +133,7 @@
 					}).catch(err => {
 						uni.showToast({
 							icon:"none",
-							title:err+'，请登录后重试！'
+							title:'请《我的》页面登录后重试！'
 						})
 					})
 				}

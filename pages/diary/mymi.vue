@@ -1,5 +1,10 @@
 <template>
     <view>
+		<view>
+			<button type="primary" loading="true">页面主操作 Loading</button>
+			
+		</view>
+		
         <view class="article-meta">
             <text class="article-author">{{banner.author_name}}</text>
             <text class="article-text">发表于</text>

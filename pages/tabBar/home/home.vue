@@ -101,6 +101,9 @@
 	import uniBadge from "@/components/uni-badge/uni-badge.vue"
 	import uniNoticeBar from '@/components/uni-notice-bar/uni-notice-bar.vue'
 	import uniCard from '@/components/uni-card/uni-card.vue'
+	
+	import *as http from '@/pages/tabBar/home/api.js'
+	
 	export default {
 		components: {
 			uniBadge,
@@ -140,31 +143,34 @@
 				protected_num:8,
 				notice_text:"[单行] 这是 NoticeBar 通告栏，这是 NoticeBar 通告栏，这是 NoticeBar 通告栏",
 				productList:[
-					{
-						r_id:1,
-						img:"https://img-cdn-qiniu.dcloud.net.cn/uniapp/images/muwu.jpg",
-						time:"2020-09-15 14:12:12",
-						name:"张三",
-						con:"那是一个秋意盎然、金风送爽的日子,我和父母一起来到了位于上师大旁的康健园.一踏进公园,一股浓郁的桂香扑鼻而来,泌人心脾,让我心旷神怡,只见一朵朵开得正烈的金色桂花,迎风而立,仿佛在向我招手.我们追着这桂香,走进了清幽的公园.",
-						num:"点击数：123",
-					},
-					{
-						r_id:2,
-						img:"https://img-cdn-qiniu.dcloud.net.cn/uniapp/images/muwu.jpg",
-						time:"2020-09-15 14:12:12",
-						name:"张三",
-						con:"那是一个秋意盎.",
-						num:"点击数：123",
-					},
-					{
-						r_id:3,
-						img:"https://img-cdn-qiniu.dcloud.net.cn/uniapp/images/muwu.jpg",
-						time:"2020-09-15 14:12:12",
-						name:"张三",
-						con:"那是一个秋意盎.",
-						num:"点击数：123",
-					}
-				]
+					// {
+					// 	r_id:1,
+					// 	img:"https://img-cdn-qiniu.dcloud.net.cn/uniapp/images/muwu.jpg",
+					// 	time:"2020-09-15 14:12:12",
+					// 	name:"张三",
+					// 	con:"那是一个秋意盎然、金风送爽的日子,我和父母一起来到了位于上师大旁的康健园.一踏进公园,一股浓郁的桂香扑鼻而来,泌人心脾,让我心旷神怡,只见一朵朵开得正烈的金色桂花,迎风而立,仿佛在向我招手.我们追着这桂香,走进了清幽的公园.",
+					// 	num:"点击数：123",
+					// },
+					// {
+					// 	r_id:2,
+					// 	img:"https://img-cdn-qiniu.dcloud.net.cn/uniapp/images/muwu.jpg",
+					// 	time:"2020-09-15 14:12:12",
+					// 	name:"张三",
+					// 	con:"那是一个秋意盎.",
+					// 	num:"点击数：123",
+					// },
+					// {
+					// 	r_id:3,
+					// 	img:"https://img-cdn-qiniu.dcloud.net.cn/uniapp/images/muwu.jpg",
+					// 	time:"2020-09-15 14:12:12",
+					// 	name:"张三",
+					// 	con:"那是一个秋意盎.",
+					// 	num:"点击数：123",
+					// }
+				],
+				page_total:1, // 总页数
+				page:1, 	  // 当前页
+				loadingText:'加载中...', 
 			}
 		},
 		methods: {
@@ -179,10 +185,64 @@
 			toDiary(e) {
 				// uni.showToast({ title: '商品' + e.r_id, icon: 'none' });
 				uni.navigateTo({
-					url: '../../diary/index?cid=' + e.r_id
+					url: '../../diary/index?r_id=' + e.r_id
 				});
 			},
 		},
+		onLoad() {
+			http.homeDiary({
+				page:this.page
+			}).then(res => {
+				res.lists.map(x=>{
+					this.productList.push({
+						r_id:x.id,
+						img:x.avatar,
+						time:x.created_at,
+						name:x.username,
+						con:x.title,
+						num:"",
+					});
+				})
+				this.page_total = res.total
+			}).catch(err => {
+				uni.showToast({
+					icon:"none",
+					title:'服务器开小差！'
+				})
+			})
+		},
+		onReachBottom() {
+			    console.log('触发下一页');
+				if(this.page >= this.page_total){
+					this.loadingText = '没有了。';
+					return false;
+				}else{
+					this.page++;
+					http.homeDiary({
+						page:this.page
+					}).then(res => {
+						res.lists.map(x=>{
+							this.productList.push({
+								r_id:x.id,
+								img:x.avatar,
+								time:x.created_at,
+								name:x.username,
+								con:x.title,
+								num:"",
+							});
+						})
+					}).catch(err => {
+						uni.showToast({
+							icon:"none",
+							title:'服务器开小差！'
+						})
+					})
+				}
+				
+				setTimeout(function () {
+				    uni.stopPullDownRefresh();	
+				}, 500);
+			},
 	}
 	
 </script>

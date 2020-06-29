@@ -1696,7 +1696,7 @@ function normalizeComponent (
 
 /***/ }),
 
-/***/ 117:
+/***/ 126:
 /*!*********************************************************!*\
   !*** C:/html/xiuxiudiary/components/uni-icons/icons.js ***!
   \*********************************************************/
@@ -1835,6 +1835,151 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
   "cloud-download-filled": "\uE8E9",
   "headphones": "\uE8BF",
   "shop": "\uE609" };exports.default = _default;
+
+/***/ }),
+
+/***/ 17:
+/*!****************************************************!*\
+  !*** C:/html/xiuxiudiary/pages/tabBar/home/api.js ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.homeDiary = void 0;var http = _interopRequireWildcard(__webpack_require__(/*! ../../../utils/service.js */ 18));function _getRequireWildcardCache() {if (typeof WeakMap !== "function") return null;var cache = new WeakMap();_getRequireWildcardCache = function _getRequireWildcardCache() {return cache;};return cache;}function _interopRequireWildcard(obj) {if (obj && obj.__esModule) {return obj;}if (obj === null || typeof obj !== "object" && typeof obj !== "function") {return { default: obj };}var cache = _getRequireWildcardCache();if (cache && cache.has(obj)) {return cache.get(obj);}var newObj = {};var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;for (var key in obj) {if (Object.prototype.hasOwnProperty.call(obj, key)) {var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;if (desc && (desc.get || desc.set)) {Object.defineProperty(newObj, key, desc);} else {newObj[key] = obj[key];}}}newObj.default = obj;if (cache) {cache.set(obj, newObj);}return newObj;}
+
+var homeDiary = function homeDiary(data) {
+  return new Promise(function (resolve, reject) {
+    http.get('homeDiary', data).then(function (res) {
+      resolve(res);
+    }).catch(function (err) {
+      reject(err);
+    });
+  });
+};exports.homeDiary = homeDiary;
+
+/***/ }),
+
+/***/ 18:
+/*!********************************************!*\
+  !*** C:/html/xiuxiudiary/utils/service.js ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.del = exports.put = exports.post = exports.get = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@vue/babel-preset-app/node_modules/@babel/runtime/regenerator */ 19));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}var baseUrl = 'http://www.lqy.com/api/';
+// let baseUrl = 'https://www.ergouphp.com/api/'
+
+var headers = {
+  formdata: {
+    'content-type': 'multipart/formdata' },
+
+  json: {
+    'content-type': 'application/json' },
+
+  urlencoded: {
+    'content-type': 'application/x-www-form-urlencoded' } };
+
+
+
+var http = /*#__PURE__*/function () {var _ref2 = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee(_ref) {var url, headertype, method, data;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
+            url = _ref.url,
+            headertype = _ref.headertype,
+            method = _ref.method,
+            data = _ref.data;
+
+            try {
+              headers[headertype]['Authorization'] = uni.getStorageSync('token');
+            } catch (err) {
+              headers[headertype]['Authorization'] = 'coco';
+            }return _context.abrupt("return",
+
+
+            new Promise(function (resolve, reject) {
+              if (url.includes('http')) {
+                baseUrl = '';
+              }
+              uni.request({
+                url: baseUrl + url,
+                header: headers[headertype],
+                method: method,
+                data: data }).
+              then(function (res) {
+                if (res[1].data.code === 200) {
+                  resolve(res[1].data.data);
+                } else if (res[1].data.code === 201) {
+                  reject(res[1].data.message);
+                } else if (res[1].data.code === 202) {
+
+                  // 这里移除 用户信息 
+                  uni.removeStorage({
+                    key: 'userInfo' });
+
+                  // 这里移除 token
+                  uni.removeStorage({
+                    key: 'token' });
+
+                  uni.showToast({
+                    title: res[1].data.message });
+
+                  reject('登录身份失效');
+                }
+              }).catch(function (err) {
+                reject(err);
+              });
+            }));case 3:case "end":return _context.stop();}}}, _callee);}));return function http(_x) {return _ref2.apply(this, arguments);};}();
+
+
+var get = function get(url, data) {
+  if (data && data.id) {
+    url = "".concat(url, "/").concat(data.id);
+    delete data.id;
+  }
+  return http({
+    url: url,
+    headertype: 'json',
+    method: 'GET',
+    data: data });
+
+};exports.get = get;
+
+var post = function post(url, data) {var headertype = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'json';
+  return http({
+    url: url,
+    headertype: headertype,
+    method: 'POST',
+    data: data });
+
+};exports.post = post;
+var put = function put(url, data) {var headertype = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'json';
+  return http({
+    url: url,
+    headertype: headertype,
+    method: 'PUT',
+    data: data });
+
+};exports.put = put;
+var del = function del(url, data) {var headertype = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'json';
+  return http({
+    url: url,
+    headertype: headertype,
+    method: 'DEL',
+    data: data });
+
+};exports.del = del;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
+/***/ }),
+
+/***/ 19:
+/*!*********************************************************************************************!*\
+  !*** ./node_modules/@vue/babel-preset-app/node_modules/@babel/runtime/regenerator/index.js ***!
+  \*********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! regenerator-runtime */ 20);
 
 /***/ }),
 
@@ -7867,152 +8012,7 @@ internalMixin(Vue);
 
 /***/ }),
 
-/***/ 25:
-/*!*****************************************************!*\
-  !*** C:/html/xiuxiudiary/pages/tabBar/diary/api.js ***!
-  \*****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.diaryList = void 0;var http = _interopRequireWildcard(__webpack_require__(/*! ../../../utils/service.js */ 26));function _getRequireWildcardCache() {if (typeof WeakMap !== "function") return null;var cache = new WeakMap();_getRequireWildcardCache = function _getRequireWildcardCache() {return cache;};return cache;}function _interopRequireWildcard(obj) {if (obj && obj.__esModule) {return obj;}if (obj === null || typeof obj !== "object" && typeof obj !== "function") {return { default: obj };}var cache = _getRequireWildcardCache();if (cache && cache.has(obj)) {return cache.get(obj);}var newObj = {};var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;for (var key in obj) {if (Object.prototype.hasOwnProperty.call(obj, key)) {var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;if (desc && (desc.get || desc.set)) {Object.defineProperty(newObj, key, desc);} else {newObj[key] = obj[key];}}}newObj.default = obj;if (cache) {cache.set(obj, newObj);}return newObj;}
-
-var diaryList = function diaryList(data) {
-  return new Promise(function (resolve, reject) {
-    http.get('diaryList', data).then(function (res) {
-      resolve(res);
-    }).catch(function (err) {
-      reject(err);
-    });
-  });
-};exports.diaryList = diaryList;
-
-/***/ }),
-
-/***/ 26:
-/*!********************************************!*\
-  !*** C:/html/xiuxiudiary/utils/service.js ***!
-  \********************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.del = exports.put = exports.post = exports.get = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@vue/babel-preset-app/node_modules/@babel/runtime/regenerator */ 27));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}var baseUrl = 'http://www.lqy.com/api/';
-// let baseUrl = 'https://www.ergouphp.com/api/'
-
-var headers = {
-  formdata: {
-    'content-type': 'multipart/formdata' },
-
-  json: {
-    'content-type': 'application/json' },
-
-  urlencoded: {
-    'content-type': 'application/x-www-form-urlencoded' } };
-
-
-
-var http = /*#__PURE__*/function () {var _ref2 = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee(_ref) {var url, headertype, method, data;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
-            url = _ref.url,
-            headertype = _ref.headertype,
-            method = _ref.method,
-            data = _ref.data;
-
-            try {
-              headers[headertype]['Authorization'] = uni.getStorageSync('token');
-            } catch (err) {
-              headers[headertype]['Authorization'] = 'coco';
-            }return _context.abrupt("return",
-
-
-            new Promise(function (resolve, reject) {
-              if (url.includes('http')) {
-                baseUrl = '';
-              }
-              uni.request({
-                url: baseUrl + url,
-                header: headers[headertype],
-                method: method,
-                data: data }).
-              then(function (res) {
-                if (res[1].data.code === 200) {
-                  resolve(res[1].data.data);
-                } else if (res[1].data.code === 201) {
-                  reject(res[1].data.message);
-                } else if (res[1].data.code === 202) {
-
-                  // 这里移除 用户信息 
-                  uni.removeStorage({
-                    key: 'userInfo' });
-
-                  // 这里移除 token
-                  uni.removeStorage({
-                    key: 'token' });
-
-                  uni.showToast({
-                    title: res[1].data.message });
-
-                  reject('登录身份失效');
-                }
-              }).catch(function (err) {
-                reject(err);
-              });
-            }));case 3:case "end":return _context.stop();}}}, _callee);}));return function http(_x) {return _ref2.apply(this, arguments);};}();
-
-
-var get = function get(url, data) {
-  if (data && data.id) {
-    url = "".concat(url, "/").concat(data.id);
-    delete data.id;
-  }
-  return http({
-    url: url,
-    headertype: 'json',
-    method: 'GET',
-    data: data });
-
-};exports.get = get;
-
-var post = function post(url, data) {var headertype = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'json';
-  return http({
-    url: url,
-    headertype: headertype,
-    method: 'POST',
-    data: data });
-
-};exports.post = post;
-var put = function put(url, data) {var headertype = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'json';
-  return http({
-    url: url,
-    headertype: headertype,
-    method: 'PUT',
-    data: data });
-
-};exports.put = put;
-var del = function del(url, data) {var headertype = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'json';
-  return http({
-    url: url,
-    headertype: headertype,
-    method: 'DEL',
-    data: data });
-
-};exports.del = del;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
-
-/***/ }),
-
-/***/ 27:
-/*!*********************************************************************************************!*\
-  !*** ./node_modules/@vue/babel-preset-app/node_modules/@babel/runtime/regenerator/index.js ***!
-  \*********************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(/*! regenerator-runtime */ 28);
-
-/***/ }),
-
-/***/ 28:
+/***/ 20:
 /*!************************************************************!*\
   !*** ./node_modules/regenerator-runtime/runtime-module.js ***!
   \************************************************************/
@@ -8043,7 +8043,7 @@ var oldRuntime = hadRuntime && g.regeneratorRuntime;
 // Force reevalutation of runtime.js.
 g.regeneratorRuntime = undefined;
 
-module.exports = __webpack_require__(/*! ./runtime */ 29);
+module.exports = __webpack_require__(/*! ./runtime */ 21);
 
 if (hadRuntime) {
   // Restore the original runtime.
@@ -8060,7 +8060,7 @@ if (hadRuntime) {
 
 /***/ }),
 
-/***/ 29:
+/***/ 21:
 /*!*****************************************************!*\
   !*** ./node_modules/regenerator-runtime/runtime.js ***!
   \*****************************************************/
@@ -8823,6 +8823,37 @@ module.exports = g;
 
 /***/ }),
 
+/***/ 30:
+/*!*****************************************************!*\
+  !*** C:/html/xiuxiudiary/pages/tabBar/diary/api.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.getDate = exports.diaryList = void 0;var http = _interopRequireWildcard(__webpack_require__(/*! ../../../utils/service.js */ 18));function _getRequireWildcardCache() {if (typeof WeakMap !== "function") return null;var cache = new WeakMap();_getRequireWildcardCache = function _getRequireWildcardCache() {return cache;};return cache;}function _interopRequireWildcard(obj) {if (obj && obj.__esModule) {return obj;}if (obj === null || typeof obj !== "object" && typeof obj !== "function") {return { default: obj };}var cache = _getRequireWildcardCache();if (cache && cache.has(obj)) {return cache.get(obj);}var newObj = {};var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;for (var key in obj) {if (Object.prototype.hasOwnProperty.call(obj, key)) {var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;if (desc && (desc.get || desc.set)) {Object.defineProperty(newObj, key, desc);} else {newObj[key] = obj[key];}}}newObj.default = obj;if (cache) {cache.set(obj, newObj);}return newObj;}
+
+var diaryList = function diaryList(data) {
+  return new Promise(function (resolve, reject) {
+    http.get('diaryList', data).then(function (res) {
+      resolve(res);
+    }).catch(function (err) {
+      reject(err);
+    });
+  });
+};exports.diaryList = diaryList;
+var getDate = function getDate(data) {
+  return new Promise(function (resolve, reject) {
+    http.get('getDate', data).then(function (res) {
+      resolve(res);
+    }).catch(function (err) {
+      reject(err);
+    });
+  });
+};exports.getDate = getDate;
+
+/***/ }),
+
 /***/ 4:
 /*!**************************************!*\
   !*** C:/html/xiuxiudiary/pages.json ***!
@@ -8834,7 +8865,7 @@ module.exports = g;
 
 /***/ }),
 
-/***/ 46:
+/***/ 47:
 /*!**********************************************!*\
   !*** C:/html/xiuxiudiary/pages/diary/api.js ***!
   \**********************************************/
@@ -8842,7 +8873,7 @@ module.exports = g;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.diaryAdd = void 0;var http = _interopRequireWildcard(__webpack_require__(/*! ../../utils/service.js */ 26));function _getRequireWildcardCache() {if (typeof WeakMap !== "function") return null;var cache = new WeakMap();_getRequireWildcardCache = function _getRequireWildcardCache() {return cache;};return cache;}function _interopRequireWildcard(obj) {if (obj && obj.__esModule) {return obj;}if (obj === null || typeof obj !== "object" && typeof obj !== "function") {return { default: obj };}var cache = _getRequireWildcardCache();if (cache && cache.has(obj)) {return cache.get(obj);}var newObj = {};var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;for (var key in obj) {if (Object.prototype.hasOwnProperty.call(obj, key)) {var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;if (desc && (desc.get || desc.set)) {Object.defineProperty(newObj, key, desc);} else {newObj[key] = obj[key];}}}newObj.default = obj;if (cache) {cache.set(obj, newObj);}return newObj;}
+Object.defineProperty(exports, "__esModule", { value: true });exports.getDetail = exports.diaryAdd = void 0;var http = _interopRequireWildcard(__webpack_require__(/*! ../../utils/service.js */ 18));function _getRequireWildcardCache() {if (typeof WeakMap !== "function") return null;var cache = new WeakMap();_getRequireWildcardCache = function _getRequireWildcardCache() {return cache;};return cache;}function _interopRequireWildcard(obj) {if (obj && obj.__esModule) {return obj;}if (obj === null || typeof obj !== "object" && typeof obj !== "function") {return { default: obj };}var cache = _getRequireWildcardCache();if (cache && cache.has(obj)) {return cache.get(obj);}var newObj = {};var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;for (var key in obj) {if (Object.prototype.hasOwnProperty.call(obj, key)) {var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;if (desc && (desc.get || desc.set)) {Object.defineProperty(newObj, key, desc);} else {newObj[key] = obj[key];}}}newObj.default = obj;if (cache) {cache.set(obj, newObj);}return newObj;}
 
 var diaryAdd = function diaryAdd(data) {
   return new Promise(function (resolve, reject) {
@@ -8853,10 +8884,19 @@ var diaryAdd = function diaryAdd(data) {
     });
   });
 };exports.diaryAdd = diaryAdd;
+var getDetail = function getDetail(data) {
+  return new Promise(function (resolve, reject) {
+    http.get('getDetail', data).then(function (res) {
+      resolve(res);
+    }).catch(function (err) {
+      reject(err);
+    });
+  });
+};exports.getDetail = getDetail;
 
 /***/ }),
 
-/***/ 53:
+/***/ 62:
 /*!****************************************************!*\
   !*** C:/html/xiuxiudiary/pages/tabBar/user/api.js ***!
   \****************************************************/
@@ -8864,7 +8904,7 @@ var diaryAdd = function diaryAdd(data) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.userCode = void 0;var http = _interopRequireWildcard(__webpack_require__(/*! ../../../utils/service.js */ 26));function _getRequireWildcardCache() {if (typeof WeakMap !== "function") return null;var cache = new WeakMap();_getRequireWildcardCache = function _getRequireWildcardCache() {return cache;};return cache;}function _interopRequireWildcard(obj) {if (obj && obj.__esModule) {return obj;}if (obj === null || typeof obj !== "object" && typeof obj !== "function") {return { default: obj };}var cache = _getRequireWildcardCache();if (cache && cache.has(obj)) {return cache.get(obj);}var newObj = {};var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;for (var key in obj) {if (Object.prototype.hasOwnProperty.call(obj, key)) {var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;if (desc && (desc.get || desc.set)) {Object.defineProperty(newObj, key, desc);} else {newObj[key] = obj[key];}}}newObj.default = obj;if (cache) {cache.set(obj, newObj);}return newObj;}
+Object.defineProperty(exports, "__esModule", { value: true });exports.userCode = void 0;var http = _interopRequireWildcard(__webpack_require__(/*! ../../../utils/service.js */ 18));function _getRequireWildcardCache() {if (typeof WeakMap !== "function") return null;var cache = new WeakMap();_getRequireWildcardCache = function _getRequireWildcardCache() {return cache;};return cache;}function _interopRequireWildcard(obj) {if (obj && obj.__esModule) {return obj;}if (obj === null || typeof obj !== "object" && typeof obj !== "function") {return { default: obj };}var cache = _getRequireWildcardCache();if (cache && cache.has(obj)) {return cache.get(obj);}var newObj = {};var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;for (var key in obj) {if (Object.prototype.hasOwnProperty.call(obj, key)) {var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;if (desc && (desc.get || desc.set)) {Object.defineProperty(newObj, key, desc);} else {newObj[key] = obj[key];}}}newObj.default = obj;if (cache) {cache.set(obj, newObj);}return newObj;}
 
 var userCode = function userCode(data) {
   return new Promise(function (resolve, reject) {

@@ -70,8 +70,8 @@
 								}).then(res => {
 									console.log(res)
 									uni.showToast({
-										title:'添加成功！',
-										duration: 2000,
+										title:'添加成功,审核通过后会在首页显示',
+										duration: 3000,
 										icon:"success",
 									})
 									
