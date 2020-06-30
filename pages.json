@@ -39,9 +39,43 @@
 			}
 		},
 		{
+			"path": "pages/diary/edit",
+			"style": {
+				"navigationBarTitleText": "修改日记"
+			}
+		},
+		{
 			"path": "pages/tabBar/user/user",
 			"style": {
 				"navigationBarTitleText": "秀秀我的"
+			}
+		},
+		{
+		    "path" : "pages/review/index/index",
+		    "style" : {
+		        "navigationBarTitleText" : "评论",
+		    	"enablePullDownRefresh" : true,
+		        "app-plus" : {
+		            "bounce" : "none",
+		            "titleNView" : {
+		                "type" : "",
+		                "buttons" : [
+		                    {
+		                        "background" : "rgba(248,248,248,0)",
+		                        "color" : "#696969",
+		                        "type" : "none",
+		                        "fontSrc" : "/static/fonts/iconfont.ttf",
+		                        "text" : "&#xe611;" //小相机
+		                    }
+		                ]
+		            }
+		        }
+		    }
+		},
+		{
+		    "path" : "pages/review/publish/publish",
+		    "style" : {
+				"navigationBarTitleText" : "发布"
 			}
 		}
 	],

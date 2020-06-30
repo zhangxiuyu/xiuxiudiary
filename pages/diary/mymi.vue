@@ -1,9 +1,6 @@
 <template>
     <view>
-		<view>
-			<button type="primary" loading="true">页面主操作 Loading</button>
-			
-		</view>
+		
 		
         <view class="article-meta">
             <text class="article-author">{{banner.author_name}}</text>
@@ -18,11 +15,26 @@
 		<!-- 这里是小程序的广告位 -->
         <!-- <ad v-if="htmlString" unit-id="adunit-01b7a010bf53d74e"></ad> -->
         <!-- #endif -->
+		
+		<!-- 悬浮 -->
+		<view>
+			<uni-fab
+				:pattern="pattern"
+				:content="content"
+				:horizontal="horizontal"
+				:vertical="vertical"
+				:direction="direction"
+				@trigger="trigger"
+			></uni-fab>
+		</view>
+		<!-- 悬浮 end -->
     </view>
 </template>
 
 <script>
 	import *as http from "@/pages/diary/api.js"
+	// 悬浮
+	import  uniFab from '@/components/uni-fab/uni-fab.vue'
     export default {
         data() {
             return {
@@ -31,6 +43,30 @@
 					author_name:'',
 					published_at:''
 				},
+				pattern:{
+					color:'#59c88d', //String	#3c3e49	文字默认颜色
+					selectedColor:'', //String	#007AFF	文字选中时的颜色
+					backgroundColor:'', //String	#ffffff	背景色
+					buttonColor:'#87CEFA', //	String	#3c3e49	按钮背景色
+				},
+				horizontal:'right', //水平对齐方式。left:左对齐，right：右对齐
+				vertical:'bottom', //垂直对齐方式。bottom:下对齐，top：上对齐
+				direction:'horizontal', //展开菜单显示方式。horizontal:水平显示，vertical：垂直显示
+				popMenu:true, //是否使用弹出菜单
+				content:[
+					{
+						iconPath:'/static/img/diary/del.png',
+						selectedIconPath:'/pages/diary/del',
+						text:'删除',
+						active:false,
+					},
+					{
+						iconPath:'/static/img/diary/edit.png',
+						selectedIconPath:'/pages/diary/edit',
+						text:'修改',
+						active:false,
+					}
+				],
                 htmlString: "",
 				r_id:0
             }
@@ -47,6 +83,38 @@
 			this.getDetail()
         },
         methods: {
+			// 点击悬浮按钮之后访问处理  这里验证是否登录， 未登录 跳转到我的页面进行引导登录
+			trigger (env){
+				// 删除
+				if(env.index == 0){
+					http.diaryDel({
+						r_id:this.r_id
+					}).then(res => {
+						uni.showToast({
+							icon:"success",
+							duration: 3000,
+							title:'删除成功！'
+						})
+						
+						// 删除成功之后跳转 显示一下之后，倒计时到列表查看
+						setTimeout(function(){
+							uni.navigateBack()
+						},3000)
+						
+					}).catch(err => {
+						uni.showToast({
+							icon:"none",
+							title:err
+						})
+					})
+					
+				}else if(env.index == 1){
+					uni.navigateTo({
+						url: './edit?r_id=' + this.r_id
+					});
+				}
+				
+			},
             getDetail() {
                 http.getDetail({
                 	r_id:this.r_id

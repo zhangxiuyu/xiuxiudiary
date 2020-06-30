@@ -78,7 +78,7 @@
 									// 添加成功之后跳转 显示一下之后，倒计时到列表查看 
 									setTimeout(function(){
 										uni.navigateBack()
-									},2000)
+									},3000)
 									
 								}).catch(err => {
 									console.log(err)

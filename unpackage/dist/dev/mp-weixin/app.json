@@ -6,7 +6,10 @@
     "pages/diary/index",
     "pages/diary/mymi",
     "pages/diary/add",
-    "pages/tabBar/user/user"
+    "pages/diary/edit",
+    "pages/tabBar/user/user",
+    "pages/review/index/index",
+    "pages/review/publish/publish"
   ],
   "subPackages": [],
   "window": {
