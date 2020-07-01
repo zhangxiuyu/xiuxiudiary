@@ -1696,7 +1696,90 @@ function normalizeComponent (
 
 /***/ }),
 
-/***/ 140:
+/***/ 100:
+/*!*******************************************!*\
+  !*** C:/html/xiuxiudiary/common/image.js ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@vue/babel-preset-app/node_modules/@babel/runtime/regenerator */ 19));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};} /**
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               * 使用plus.zip.compressImage压缩,目前仅支持App端
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               */
+
+
+var images = []; //压缩后的图片集合
+var max_width = 500; //若宽度大于此尺寸,触发压缩,否则使用原图,可自行修改
+
+/**
+ * 接收图片集合
+ */function
+compress(_x, _x2) {return _compress2.apply(this, arguments);}
+
+
+
+
+
+
+
+
+/**
+                                                               * 菜鸟请大神教我如何优化QAQ~
+                                                               */function _compress2() {_compress2 = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee(_images, _fun) {var i, compressd_image;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:i = 0;case 1:if (!(i < _images.length)) {_context.next = 9;break;}_context.next = 4;return _compress(_images[i]);case 4:compressd_image = _context.sent;images.push(compressd_image);case 6:i++;_context.next = 1;break;case 9:_fun && _fun(images);images = []; //压缩结束重置images,准备下次压缩
+          case 11:case "end":return _context.stop();}}}, _callee);}));return _compress2.apply(this, arguments);}function _compress(_x3) {return _compress3.apply(this, arguments);}function _compress3() {_compress3 = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2(_image) {var last4chars, image_info;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:
+
+            last4chars = _image.slice(-4);if (!(
+            plus.os.name == 'Android')) {_context2.next = 4;break;}if (!(
+            !~last4chars.indexOf('jpg') && !~last4chars.indexOf('png') && !~last4chars.indexOf('jpeg'))) {_context2.next = 4;break;}return _context2.abrupt("return",
+            _image);case 4:_context2.next = 6;return (
+
+
+
+              get_image_info(_image));case 6:image_info = _context2.sent;if (!(
+            image_info.width < max_width)) {_context2.next = 9;break;}return _context2.abrupt("return",
+            _image);case 9:return _context2.abrupt("return",
+
+
+            new Promise(function (resolve, reject) {
+              plus.zip.compressImage({
+                src: _image, //原始图片的路径
+                dst: _image, //压缩转换目标图片的路径(为了省事这里使用原路径)
+                overwrite: true, //使用原文件名并覆盖,如果想将原文件保留,并和压缩后图片同时上传,需要改为false,并修改dst
+                quality: 100, //1-100,压缩后质量,越低图片占用空间越小,越模糊
+                width: max_width + 'px' //这里先写死800;height默认为auto,即根据width与源图宽的缩放比例计算
+              },
+              function (res) {
+                resolve(res.target);
+              },
+              function (e) {
+                reject(e);
+              });
+
+
+            }));case 10:case "end":return _context2.stop();}}}, _callee2);}));return _compress3.apply(this, arguments);}
+
+
+
+
+function get_image_info(_image) {
+  return new Promise(function (resolve, reject) {
+    uni.getImageInfo({
+      src: _image,
+      success: function success(res) {
+        resolve(res);
+      } });
+
+  });
+}var _default =
+
+{
+  compress: compress };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
+/***/ }),
+
+/***/ 164:
 /*!*********************************************************!*\
   !*** C:/html/xiuxiudiary/components/uni-icons/icons.js ***!
   \*********************************************************/
@@ -8789,89 +8872,6 @@ if (hadRuntime) {
   })() || Function("return this")()
 );
 
-
-/***/ }),
-
-/***/ 214:
-/*!*******************************************!*\
-  !*** C:/html/xiuxiudiary/common/image.js ***!
-  \*******************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@vue/babel-preset-app/node_modules/@babel/runtime/regenerator */ 19));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};} /**
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               * 使用plus.zip.compressImage压缩,目前仅支持App端
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               */
-
-
-var images = []; //压缩后的图片集合
-var max_width = 500; //若宽度大于此尺寸,触发压缩,否则使用原图,可自行修改
-
-/**
- * 接收图片集合
- */function
-compress(_x, _x2) {return _compress2.apply(this, arguments);}
-
-
-
-
-
-
-
-
-/**
-                                                               * 菜鸟请大神教我如何优化QAQ~
-                                                               */function _compress2() {_compress2 = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee(_images, _fun) {var i, compressd_image;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:i = 0;case 1:if (!(i < _images.length)) {_context.next = 9;break;}_context.next = 4;return _compress(_images[i]);case 4:compressd_image = _context.sent;images.push(compressd_image);case 6:i++;_context.next = 1;break;case 9:_fun && _fun(images);images = []; //压缩结束重置images,准备下次压缩
-          case 11:case "end":return _context.stop();}}}, _callee);}));return _compress2.apply(this, arguments);}function _compress(_x3) {return _compress3.apply(this, arguments);}function _compress3() {_compress3 = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2(_image) {var last4chars, image_info;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:
-
-            last4chars = _image.slice(-4);if (!(
-            plus.os.name == 'Android')) {_context2.next = 4;break;}if (!(
-            !~last4chars.indexOf('jpg') && !~last4chars.indexOf('png') && !~last4chars.indexOf('jpeg'))) {_context2.next = 4;break;}return _context2.abrupt("return",
-            _image);case 4:_context2.next = 6;return (
-
-
-
-              get_image_info(_image));case 6:image_info = _context2.sent;if (!(
-            image_info.width < max_width)) {_context2.next = 9;break;}return _context2.abrupt("return",
-            _image);case 9:return _context2.abrupt("return",
-
-
-            new Promise(function (resolve, reject) {
-              plus.zip.compressImage({
-                src: _image, //原始图片的路径
-                dst: _image, //压缩转换目标图片的路径(为了省事这里使用原路径)
-                overwrite: true, //使用原文件名并覆盖,如果想将原文件保留,并和压缩后图片同时上传,需要改为false,并修改dst
-                quality: 100, //1-100,压缩后质量,越低图片占用空间越小,越模糊
-                width: max_width + 'px' //这里先写死800;height默认为auto,即根据width与源图宽的缩放比例计算
-              },
-              function (res) {
-                resolve(res.target);
-              },
-              function (e) {
-                reject(e);
-              });
-
-
-            }));case 10:case "end":return _context2.stop();}}}, _callee2);}));return _compress3.apply(this, arguments);}
-
-
-
-
-function get_image_info(_image) {
-  return new Promise(function (resolve, reject) {
-    uni.getImageInfo({
-      src: _image,
-      success: function success(res) {
-        resolve(res);
-      } });
-
-  });
-}var _default =
-
-{
-  compress: compress };exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 

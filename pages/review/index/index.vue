@@ -1,4 +1,5 @@
 <template>
+	<view>
 	<view id="moments">
 
 		<view class="home-pic">
@@ -54,11 +55,26 @@
 		</view>
 		<!-- <view class="uni-loadmore" v-if="showLoadMore">{{loadMoreText}}</view> -->
 	</view>
-
+	<!-- 悬浮 -->
+	<view>
+		<uni-fab
+			:pattern="pattern"
+			:content="content"
+			:horizontal="horizontal"
+			:vertical="vertical"
+			:direction="direction"
+			@trigger="trigger"
+		></uni-fab>
+	</view>
+	<!-- 悬浮 end -->
+</view>
 </template>
 
 <script>
 	import chatInput from '@/components/im-chat/chatinput.vue'; //input框
+	
+	// 悬浮
+	import  uniFab from '@/components/uni-fab/uni-fab.vue'
 	
 	export default {
 		components: {
@@ -84,6 +100,25 @@
 				
 				loadMoreText: "加载中...",
 				showLoadMore: false,
+				
+				pattern:{
+					color:'#FFC0CB', //String	#3c3e49	文字默认颜色
+					selectedColor:'', //String	#007AFF	文字选中时的颜色
+					backgroundColor:'', //String	#ffffff	背景色
+					buttonColor:'#FFC0CB', //	String	#3c3e49	按钮背景色
+				},
+				horizontal:'right', //水平对齐方式。left:左对齐，right：右对齐
+				vertical:'bottom', //垂直对齐方式。bottom:下对齐，top：上对齐
+				direction:'horizontal', //展开菜单显示方式。horizontal:水平显示，vertical：垂直显示
+				popMenu:true, //是否使用弹出菜单
+				content:[
+					{
+						iconPath:'/static/review/review2.png',
+						selectedIconPath:'/pages/diary/del',
+						text:'评论',
+						active:false,
+					}
+				],
 			}
 		},
 		mounted() {
@@ -163,6 +198,11 @@
 			navigateTo(url) {
 				uni.navigateTo({
 					url: url
+				});
+			},
+			trigger (env){
+				uni.navigateTo({
+					url:'../publish/publish'
 				});
 			},
 			like(index) {
