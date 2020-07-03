@@ -79,7 +79,7 @@
         methods: {
 			trigger (env){
 				uni.navigateTo({
-					url:'../review/index/index'
+					url:'../review/index/index?r_id=' + this.r_id
 				});
 			},
             getDetail() {

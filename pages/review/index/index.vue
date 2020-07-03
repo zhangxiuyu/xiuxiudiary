@@ -76,6 +76,9 @@
 	// 悬浮
 	import  uniFab from '@/components/uni-fab/uni-fab.vue'
 	
+	// 评论列表接口
+	import *as http from '@/pages/review/api.js';
+	
 	export default {
 		components: {
 			chatInput
@@ -119,6 +122,7 @@
 						active:false,
 					}
 				],
+				r_id:0
 			}
 		},
 		mounted() {
@@ -132,7 +136,10 @@
 			});
 
 		},
-		onLoad() {
+		onLoad(event) {
+			console.log(event.r_id)
+			this.r_id = event.r_id;
+			
 			uni.getSystemInfo({ //获取设备信息
 				success: (res) => {
 					this.screenHeight = res.screenHeight;
@@ -153,6 +160,20 @@
 					}
 				}
 			});
+			
+			http.reviewList({
+				r_id:this.r_id
+			}).then(res => {
+				console.log(res)
+			
+				
+			}).catch(err => {
+				uni.showToast({
+					icon:"none",
+					title:err
+				})
+			})
+			
 		},
 		onHide() {
 			uni.offWindowResize(); //取消监听窗口尺寸变化
@@ -202,7 +223,7 @@
 			},
 			trigger (env){
 				uni.navigateTo({
-					url:'../publish/publish'
+					url:'../publish/publish?r_id=' + this.r_id
 				});
 			},
 			like(index) {

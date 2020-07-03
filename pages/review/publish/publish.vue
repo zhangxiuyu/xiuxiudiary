@@ -37,6 +37,7 @@
 
 <script>
 	import image from '@/common/image.js';
+	import *as http from '@/pages/review/api.js';
 	
 	var sourceType = [
 		['camera'],
@@ -68,6 +69,7 @@
 				startX: 0, //点击屏幕起始位置
 				movedX: 0, //横向移动的距离
 				endX: 0, //接触屏幕后移开时的位置
+				r_id:0, // 日记id
 				//end
 			}
 		},
@@ -78,6 +80,10 @@
 				this.sizeTypeIndex = 2,
 				this.sizeType = ['压缩', '原图', '压缩或原图'],
 				this.countIndex = 8;
+		},
+		onLoad(event) {
+			this.r_id = event.r_id;
+			console.log(this.r_id)
 		},
 		
 		methods: {
@@ -90,7 +96,24 @@
 				uni.showLoading({title:'发布中'});
 				
 				// 评论的内容
-				let content = this.input_content
+				let content = this.input_content;
+				
+				http.reviewAdd({
+					r_id:this.r_id,
+					top_con:content
+				}).then(res => {
+					console.log(res)
+					uni.showLoading({title:'评论成功!'});
+					setTimeout(function(){
+						uni.navigateBack();
+					},2000)
+					
+				}).catch(err => {
+					uni.showToast({
+						icon:"none",
+						title:err
+					})
+				})
 				
 				
 				// var location = await this.getLocation();//位置信息,可删除,主要想记录一下异步转同步处理

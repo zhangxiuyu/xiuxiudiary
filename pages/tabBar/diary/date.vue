@@ -68,23 +68,17 @@
 					m:m
 				}).then(res => {
 					this.sumCount = res.sumCount;
-					
-					//if (y == this.toYear && m == this.toMonth) {
-						//这是我造的假数据！！！
-						let num=res.lists,newSign=[],today=new Date().getDate();
-						for(let i=0;i<num.length;i++){
-							if(parseInt(num[i])>today){
-								break;
-							}
-							newSign.push(y+"-"+m+"-"+num[i])
-						}
+					let num=res.lists,newSign=[],today=new Date().getDate();
+					for(let i=0;i<num.length;i++){
 						
-						//console.log(newSign);//最后传给组件的格式看这里-------------
-						this.signData = newSign;
-						console.log(this.signData)
-					// } else {
-					// 	this.signData = [];
-					//  }
+						// if(parseInt(num[i])>today){
+						// 	break;
+						// }
+						newSign.push(y+"-"+m+"-"+num[i])
+					}
+					
+					this.signData = newSign;
+				
 				}).catch(err => {
 					uni.showToast({
 						icon:"none",

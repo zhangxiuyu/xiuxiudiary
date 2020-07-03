@@ -126,7 +126,7 @@
 					http.diaryList({
 						page:this.page
 					}).then(res => {
-						res.lists.reverse();
+						res.lists;
 						res.lists.map(x=>{
 							this.diaryList.unshift(x);
 						})
