@@ -29,16 +29,16 @@
 				<view class="toolbar">
 					<view class="timestamp">{{post.timestamp}}</view>
 					<view class="like" @tap="like(index)">
-						<image :src="post.islike===0?'@/static/review/index/islike.png':'../../static/index/like.png'"></image>
+						<image :src="post.islike===0?'/static/review/index/islike.png':'/static/review/index/like.png'"></image>
 					</view>
 					<view class="comment" @tap="comment(index)">
-						<image src="@/static/review/index/comment.png"></image>
+						<image src="/static/review/index/comment.png"></image>
 					</view>
 				</view>
 				<!-- 赞／评论区 -->
 				<view class="post-footer">
 					<view class="footer_content">
-						<image class="liked" src="@/static/review/index/liked.png"></image>
+						<image class="liked" src="/static/review/index/liked.png"></image>
 						<text class="nickname" v-for="(user,index_like) in post.like" :key="index_like">{{user.username}}</text>
 					</view>
 					<view class="footer_content" v-for="(comment,comment_index) in post.comments.comment" :key="comment_index" @tap="reply(index,comment_index)">
@@ -122,7 +122,8 @@
 						active:false,
 					}
 				],
-				r_id:0
+				r_id:0,
+				user_id:''
 			}
 		},
 		mounted() {
@@ -161,19 +162,52 @@
 				}
 			});
 			
-			http.reviewList({
-				r_id:this.r_id
-			}).then(res => {
-				console.log(res)
 			
-				
-			}).catch(err => {
-				uni.showToast({
-					icon:"none",
-					title:err
+			
+			try{
+				// 获取用户id userInfoId
+				let that = this
+				uni.getStorage({
+				    key: 'userInfoId',
+				    success: function (res) {
+						http.reviewList({
+							r_id:that.r_id,
+							user_id:res.data
+						}).then(res => {
+							console.log(res)
+							that.posts = res.lists;
+							
+							
+						}).catch(err => {
+							uni.showToast({
+								icon:"none",
+								title:err
+							})
+						})
+				    }
+				});
+			}catch(err){
+				http.reviewList({
+					r_id:that.r_id,
+					user_id:that.user_id
+				}).then(res => {
+					that.posts = res.lists;
+					
+					
+				}).catch(err => {
+					uni.showToast({
+						icon:"none",
+						title:err
+					})
 				})
-			})
+			}
 			
+			let userInfo = uni.getStorageSync('userInfo')
+			if (userInfo =='' || userInfo == undefined){
+				return false;
+			}
+			this.username = userInfo.nickName;
+			this.user_id = uni.getStorageSync('userInfoId')
 		},
 		onHide() {
 			uni.offWindowResize(); //取消监听窗口尺寸变化
@@ -227,19 +261,53 @@
 				});
 			},
 			like(index) {
+				console.log('点赞')
 				if (this.posts[index].islike === 0) {
 					this.posts[index].islike = 1;
-					this.posts[index].like.push({
-						"uid": this.user_id,
-						"username": "," + this.username
-					});
+					if(this.posts[index].like.length == 0){
+						this.posts[index].like.push({
+							"uid": this.user_id,
+							"username": this.username
+						});
+					}else{
+						this.posts[index].like.push({
+							"uid": this.user_id,
+							"username": "," + this.username
+						});
+					}
+				
+					var is = 1;
 				} else {
+					console.log('取消点赞')
 					this.posts[index].islike = 0;
-					this.posts[index].like.splice(this.posts[index].like.indexOf({
-						"uid": this.user_id,
-						"username": "," + this.username
-					}), 1);
+					if(this.posts[index].like.length == 1){
+						this.posts[index].like.splice(this.posts[index].like.indexOf({
+							"uid": this.user_id,
+							"username":  this.username
+						}), 1);
+					}else{
+						this.posts[index].like.splice(this.posts[index].like.indexOf({
+							"uid": this.user_id,
+							"username": "," + this.username
+						}), 1);
+					}
+					
+					var is = 0;
 				}
+				var topic_id = this.posts[index].post_id;
+				//点赞
+				http.hit({
+					topic_id:topic_id,
+					is:this.posts[index].islike
+				}).then(res => {
+					console.log(res)
+				}).catch(err => {
+					uni.showToast({
+						icon:"none",
+						title:err
+					})
+				})
+				
 			},
 			comment(index) {
 				this.showInput = true; //调起input框
@@ -280,13 +348,40 @@
 				this.init_input();
 			},
 			send_comment: function(message) {
+			let userInfo = uni.getStorageSync('userInfo')
+			if (userInfo =='' || userInfo == undefined){
+				return false;
+			}
+			this.username = userInfo.nickName;
+			this.user_id = uni.getStorageSync('userInfoId')
 
 				if (this.is_reply) {
 					var reply_username = this.posts[this.index].comments.comment[this.comment_index].username;
+					// huid 就是要回复的id了
+					var huid = this.posts[this.index].comments.comment[this.comment_index].uid;
 					var comment_content = '回复' + reply_username + ':' + message.content;
 				} else {
+					var huid='';
+					console.log(huid)
+					var reply_username='';
 					var comment_content = message.content;
 				}
+				let p_id = this.posts[this.index].post_id
+				//请求api记录信息
+				http.reviewAdd({
+					r_id:this.r_id,
+					huid:huid,
+					top_con:comment_content,
+					p_id:p_id
+				}).then(res => {
+					
+				}).catch(err => {
+					uni.showToast({
+						icon:"none",
+						title:err
+					})
+				})
+				
 				this.posts[this.index].comments.total += 1;
 				this.posts[this.index].comments.comment.push({
 					"uid": this.user_id,
@@ -294,6 +389,8 @@
 					"content": comment_content //直接获取input中的值
 				});
 				this.init_input();
+				
+				
 			},
 			init_input() {
 				this.showInput = false;
