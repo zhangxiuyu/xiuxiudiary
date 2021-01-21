@@ -1697,16 +1697,22 @@ function normalizeComponent (
 /***/ }),
 
 /***/ 101:
+<<<<<<< HEAD
 /*!*******************************************!*\
   !*** C:/html/xiuxiudiary/common/image.js ***!
   \*******************************************/
+=======
+/*!*******************************************************!*\
+  !*** /Users/macbook/html/xiuxiudiary/common/image.js ***!
+  \*******************************************************/
+>>>>>>> f94caa01322344925d1ab93a1ca9e6e00d81b547
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@vue/babel-preset-app/node_modules/@babel/runtime/regenerator */ 19));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};} /**
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               * 使用plus.zip.compressImage压缩,目前仅支持App端
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               */
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        * 使用plus.zip.compressImage压缩,目前仅支持App端
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        */
 
 
 var images = []; //压缩后的图片集合
@@ -1780,9 +1786,9 @@ function get_image_info(_image) {
 /***/ }),
 
 /***/ 165:
-/*!*********************************************************!*\
-  !*** C:/html/xiuxiudiary/components/uni-icons/icons.js ***!
-  \*********************************************************/
+/*!*********************************************************************!*\
+  !*** /Users/macbook/html/xiuxiudiary/components/uni-icons/icons.js ***!
+  \*********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1922,9 +1928,9 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 /***/ }),
 
 /***/ 17:
-/*!****************************************************!*\
-  !*** C:/html/xiuxiudiary/pages/tabBar/home/api.js ***!
-  \****************************************************/
+/*!****************************************************************!*\
+  !*** /Users/macbook/html/xiuxiudiary/pages/tabBar/home/api.js ***!
+  \****************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1944,15 +1950,20 @@ var homeDiary = function homeDiary(data) {
 /***/ }),
 
 /***/ 18:
-/*!********************************************!*\
-  !*** C:/html/xiuxiudiary/utils/service.js ***!
-  \********************************************/
+/*!********************************************************!*\
+  !*** /Users/macbook/html/xiuxiudiary/utils/service.js ***!
+  \********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+<<<<<<< HEAD
 /* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.del = exports.put = exports.post = exports.get = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@vue/babel-preset-app/node_modules/@babel/runtime/regenerator */ 19));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}var baseUrl = 'http://www.goods.com/api/';
 // let baseUrl = 'https://www.ergouphp.com/api/'
+=======
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.del = exports.put = exports.post = exports.get = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@vue/babel-preset-app/node_modules/@babel/runtime/regenerator */ 19));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};} // let baseUrl = 'http://www.lqy.com/api/'
+var baseUrl = 'https://www.ergouphp.com/api/';
+>>>>>>> f94caa01322344925d1ab93a1ca9e6e00d81b547
 
 var headers = {
   formdata: {
@@ -8907,9 +8918,9 @@ module.exports = g;
 /***/ }),
 
 /***/ 30:
-/*!*****************************************************!*\
-  !*** C:/html/xiuxiudiary/pages/tabBar/diary/api.js ***!
-  \*****************************************************/
+/*!*****************************************************************!*\
+  !*** /Users/macbook/html/xiuxiudiary/pages/tabBar/diary/api.js ***!
+  \*****************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -8938,9 +8949,9 @@ var getDate = function getDate(data) {
 /***/ }),
 
 /***/ 4:
-/*!**************************************!*\
-  !*** C:/html/xiuxiudiary/pages.json ***!
-  \**************************************/
+/*!**************************************************!*\
+  !*** /Users/macbook/html/xiuxiudiary/pages.json ***!
+  \**************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -8949,9 +8960,9 @@ var getDate = function getDate(data) {
 /***/ }),
 
 /***/ 47:
-/*!**********************************************!*\
-  !*** C:/html/xiuxiudiary/pages/diary/api.js ***!
-  \**********************************************/
+/*!**********************************************************!*\
+  !*** /Users/macbook/html/xiuxiudiary/pages/diary/api.js ***!
+  \**********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -8999,9 +9010,9 @@ var diaryDel = function diaryDel(data) {
 /***/ }),
 
 /***/ 83:
-/*!****************************************************!*\
-  !*** C:/html/xiuxiudiary/pages/tabBar/user/api.js ***!
-  \****************************************************/
+/*!****************************************************************!*\
+  !*** /Users/macbook/html/xiuxiudiary/pages/tabBar/user/api.js ***!
+  \****************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -9021,16 +9032,28 @@ var userCode = function userCode(data) {
 /***/ }),
 
 /***/ 92:
+<<<<<<< HEAD
 /*!***********************************************!*\
   !*** C:/html/xiuxiudiary/pages/review/api.js ***!
   \***********************************************/
+=======
+/*!***********************************************************!*\
+  !*** /Users/macbook/html/xiuxiudiary/pages/review/api.js ***!
+  \***********************************************************/
+>>>>>>> f94caa01322344925d1ab93a1ca9e6e00d81b547
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+<<<<<<< HEAD
 Object.defineProperty(exports, "__esModule", { value: true });exports.reviewAdd = exports.reviewList = void 0;var http = _interopRequireWildcard(__webpack_require__(/*! ../../utils/service.js */ 18));function _getRequireWildcardCache() {if (typeof WeakMap !== "function") return null;var cache = new WeakMap();_getRequireWildcardCache = function _getRequireWildcardCache() {return cache;};return cache;}function _interopRequireWildcard(obj) {if (obj && obj.__esModule) {return obj;}if (obj === null || typeof obj !== "object" && typeof obj !== "function") {return { default: obj };}var cache = _getRequireWildcardCache();if (cache && cache.has(obj)) {return cache.get(obj);}var newObj = {};var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;for (var key in obj) {if (Object.prototype.hasOwnProperty.call(obj, key)) {var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;if (desc && (desc.get || desc.set)) {Object.defineProperty(newObj, key, desc);} else {newObj[key] = obj[key];}}}newObj.default = obj;if (cache) {cache.set(obj, newObj);}return newObj;}
 
 
+=======
+Object.defineProperty(exports, "__esModule", { value: true });exports.reviewAdd = exports.hit = exports.reviewList = void 0;var http = _interopRequireWildcard(__webpack_require__(/*! ../../utils/service.js */ 18));function _getRequireWildcardCache() {if (typeof WeakMap !== "function") return null;var cache = new WeakMap();_getRequireWildcardCache = function _getRequireWildcardCache() {return cache;};return cache;}function _interopRequireWildcard(obj) {if (obj && obj.__esModule) {return obj;}if (obj === null || typeof obj !== "object" && typeof obj !== "function") {return { default: obj };}var cache = _getRequireWildcardCache();if (cache && cache.has(obj)) {return cache.get(obj);}var newObj = {};var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;for (var key in obj) {if (Object.prototype.hasOwnProperty.call(obj, key)) {var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;if (desc && (desc.get || desc.set)) {Object.defineProperty(newObj, key, desc);} else {newObj[key] = obj[key];}}}newObj.default = obj;if (cache) {cache.set(obj, newObj);}return newObj;}
+
+// 评论列表
+>>>>>>> f94caa01322344925d1ab93a1ca9e6e00d81b547
 var reviewList = function reviewList(data) {
   return new Promise(function (resolve, reject) {
     http.get('reviewList', data).then(function (res) {
@@ -9050,7 +9073,22 @@ exports.reviewList = reviewList;var reviewAdd = function reviewAdd(data) {
       reject(err);
     });
   });
+<<<<<<< HEAD
 };exports.reviewAdd = reviewAdd;
+=======
+};
+
+// 点赞 取消点赞
+exports.reviewAdd = reviewAdd;var hit = function hit(data) {
+  return new Promise(function (resolve, reject) {
+    http.post('hit', data).then(function (res) {
+      resolve(res);
+    }).catch(function (err) {
+      reject(err);
+    });
+  });
+};exports.hit = hit;
+>>>>>>> f94caa01322344925d1ab93a1ca9e6e00d81b547
 
 /***/ })
 

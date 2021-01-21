@@ -30,7 +30,7 @@
 		</view>
 	
 		<!-- 工具栏 -->
-		<view class="toolbar">
+	<!-- 	<view class="toolbar">
 			<view class="title">我的工具栏</view>
 			<view class="list">
 				<view class="box" v-for="(row,index) in mytoolbarList" :key="index" @tap="toPage(row.url)">
@@ -40,7 +40,14 @@
 					<view class="text">{{row.text}}</view>
 				</view>
 			</view>
-		</view>
+		</view> -->
+		<view class="toolbar">
+				<view class="title">我的工具栏</view>
+				<view class="list">
+					<button type="primary" size='mini' open-type='contact'>联系秀秀</button>
+				</view>
+			</view>
+		<!-- 占位 -->
 		<view class="place-bottom"></view>
 	</view>
 </template>
@@ -154,9 +161,9 @@ import *as http from "@/pages/tabBar/user/api.js"
 									provider: 'weixin',
 									lang:'zh_CN',
 									success: (info) => {
-										console.log(1233);
-										console.log(res);
-										console.log(info);
+										// console.log(1233);
+										// console.log(res);
+										// console.log(info);
 										_self.user = {
 											username:info.userInfo.nickName,
 											face:info.userInfo.avatarUrl
@@ -170,6 +177,8 @@ import *as http from "@/pages/tabBar/user/api.js"
 										        console.log('user 写入');
 										    }
 										});
+										
+										
 										//这里请求接口 这里向服务端 写入用户，并返回 token
 										http.userCode({
 											code:res.code,
@@ -185,10 +194,18 @@ import *as http from "@/pages/tabBar/user/api.js"
 											// 这里写入token
 											uni.setStorage({
 											    key: 'token',
-											    data: res,
+											    data: res.token,
 											    success: function () {
 													
-											        console.log('user 写入');
+											        console.log('token 写入');
+											    }
+											});
+											
+											uni.setStorage({
+											    key: 'userInfoId',
+											    data: res.user_id,
+											    success: function () {
+											        console.log('Id 写入');
 											    }
 											});
 											

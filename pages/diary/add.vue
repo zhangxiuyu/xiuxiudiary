@@ -35,7 +35,7 @@
 				// text  截取13个中文字 作为列表显示标题使用
 				const sub_text = (str) => {
 					const start = 0;
-					const n = 24;
+					const n = 36;
 					if (str.replace(/[\u4e00-\u9fa5]/g, '**').length <= n) {
 					  return str;
 					}
