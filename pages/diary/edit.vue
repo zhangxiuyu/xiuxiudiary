@@ -37,7 +37,6 @@
 					http.getDetail({
 						r_id:this.r_id
 					}).then(res => {
-						console.log(111222)
 						console.log(res)
 						this.html = res.html
 						console.log(this.html)

@@ -271,6 +271,7 @@ var _default = { data: function data() {return { isfirst: true, headerPosition: 
               _self.authorization = res.code;
               uni.getUserInfo({
                 provider: 'weixin',
+                lang: 'zh_CN',
                 success: function success(info) {
                   console.log(1233);
                   console.log(res);
@@ -292,7 +293,11 @@ var _default = { data: function data() {return { isfirst: true, headerPosition: 
                   http.userCode({
                     code: res.code,
                     username: info.userInfo.nickName,
-                    avatarUrl: info.userInfo.avatarUrl }).
+                    avatarUrl: info.userInfo.avatarUrl,
+                    gender: info.userInfo.gender,
+                    province: info.userInfo.province,
+                    city: info.userInfo.city,
+                    country: info.userInfo.country }).
                   then(function (res) {
                     console.log(res);
 

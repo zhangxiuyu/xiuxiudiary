@@ -24,7 +24,7 @@
 			<view class="right">
 				<view class="username" @tap="toLogin">{{user.username}}</view>
 				<!-- <view class="signature" @tap="toSetting">{{user.signature}}</view> -->
-				<button size='mini' class="sys_btn" open-type="getUserInfo" lang="zh_CN" @getuserinfo="appLoginWx">{{user.username != "" && user.username != undefined ? "" : "登录"}}</button>
+				<button size='mini' class="sys_btn"  lang="zh_CN" @tap="appLoginWx">{{user.username != "" && user.username != undefined ? "" : "登录"}}</button>
 			</view>
 	
 		</view>
@@ -65,7 +65,10 @@ import *as http from "@/pages/tabBar/user/api.js"
 				},
 				// 工具栏列表
 				mytoolbarList:[
-					{url:'../../user/keep/keep',text:'我的收藏',img:'/static/img/user/point.png'},
+					{
+						url:'/pages/tabBar/user/index',
+						text:'云凤翻译',
+						img:'/static/img/user/point.png'},
 				]
 			}
 		},
@@ -94,8 +97,8 @@ import *as http from "@/pages/tabBar/user/api.js"
 			    success: function (res) {
 			        console.log(res.data);
 					that.user = {
-						username:res.data.nickName,
-						face:res.data.avatarUrl
+						username:res.data.username,
+						face:res.data.avatar
 					}
 			    }
 			});
@@ -121,12 +124,22 @@ import *as http from "@/pages/tabBar/user/api.js"
 					url:'../../user/setting/setting'
 				})
 			},
+			toPage(url){
+				uni.navigateTo({
+					url:url
+				})
+			},
 			toMyQR(){
 				uni.navigateTo({
 					url:'../../user/myQR/myQR'
 				})
 			},
 			 appLoginWx(){
+				 console.log('登录')
+				 uni.navigateTo({
+				 	url: '/pages/tabBar/user/login'
+				 });
+				 
 			// #ifdef MP-WEIXIN
 			
 				const _self = this;
@@ -139,6 +152,7 @@ import *as http from "@/pages/tabBar/user/api.js"
 								_self.authorization = res.code;
 								uni.getUserInfo({
 									provider: 'weixin',
+									lang:'zh_CN',
 									success: (info) => {
 										console.log(1233);
 										console.log(res);
@@ -161,6 +175,10 @@ import *as http from "@/pages/tabBar/user/api.js"
 											code:res.code,
 											username:info.userInfo.nickName,
 											avatarUrl:info.userInfo.avatarUrl,
+											gender:info.userInfo.gender,
+											province:info.userInfo.province,
+											city:info.userInfo.city,
+											country:info.userInfo.country,
 										}).then(res => {
 											console.log(res)
 											
@@ -192,6 +210,8 @@ import *as http from "@/pages/tabBar/user/api.js"
 				  }
 				});
 				//#endif
+				
+				
 			}
 			
 		}

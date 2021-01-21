@@ -1,5 +1,5 @@
-let baseUrl = 'http://www.lqy.com/api/'
-// let baseUrl = 'https://www.ergouphp.com/api/'
+// let baseUrl = 'http://www.goods.com/api/'
+let baseUrl = 'http://p.ergouphp.com/api/'
 
 const headers = {
 	formdata: {

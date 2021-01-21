@@ -2,7 +2,17 @@ import * as http from '../../../utils/service.js'
 
 const userCode = (data) =>{
 	return new Promise((resolve,reject)=>{
-		http.post('diaryUserCode',data).then(res => {
+		http.post('userCode',data).then(res => {
+			resolve(res)
+		}).catch(err => {
+			reject(err)
+		})
+	})
+}
+
+const login = (data) =>{
+	return new Promise((resolve,reject)=>{
+		http.post('login',data).then(res => {
 			resolve(res)
 		}).catch(err => {
 			reject(err)
@@ -10,5 +20,6 @@ const userCode = (data) =>{
 	})
 }
 export{
-	userCode
+	userCode,
+	login
 }
