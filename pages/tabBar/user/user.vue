@@ -30,7 +30,7 @@
 		</view>
 	
 		<!-- 工具栏 -->
-	<!-- 	<view class="toolbar">
+		<view class="toolbar">
 			<view class="title">我的工具栏</view>
 			<view class="list">
 				<view class="box" v-for="(row,index) in mytoolbarList" :key="index" @tap="toPage(row.url)">
@@ -40,15 +40,15 @@
 					<view class="text">{{row.text}}</view>
 				</view>
 			</view>
-		</view> -->
-		<view class="toolbar">
+		</view>
+		<!-- <view class="toolbar">
 				<view class="title">我的工具栏</view>
 				<view class="list">
 					<button type="primary" size='mini' open-type='contact'>联系秀秀</button>
 				</view>
 			</view>
 		<!-- 占位 -->
-		<view class="place-bottom"></view>
+		<!-- <view class="place-bottom"></view> --> 
 	</view>
 </template>
 <script>
@@ -115,6 +115,13 @@ import *as http from "@/pages/tabBar/user/api.js"
 			const that = this;
 			uni.getStorage({
 				key: 'userInfo',
+				success: function (res) {
+				    console.log(res.data);
+					that.user = {
+						username:res.data.username,
+						face:res.data.avatar
+					}
+				},
 				fail:function(){
 					that.user ={
 						username:'',
