@@ -115,6 +115,7 @@ export default {
 		
 	},
 	methods: {
+		
 		onEditorReady(e) {
 			uni.createSelectorQuery()
 				.in(this)
@@ -132,6 +133,7 @@ export default {
 		},
 		undo() {
 			this.editorCtx.undo();
+			uni.hideKeyboard()
 		},
 		// 插入图片
 		insertImage() {
@@ -152,9 +154,12 @@ export default {
 							name: this.fileKeyName,
 							header: this.header,
 							success: res => {
+								console.log('图片上传 返回')
+								console.log(res)
+								
 								// 上传完成后处理
 								this.editorCtx.insertImage({
-									src: temp,  // 此处需要将图片地址切换成服务器返回的真实图片地址
+									src: res.data,  // 此处需要将图片地址切换成服务器返回的真实图片地址
 									alt: '图片',
 									success: function(e) {}
 								});
@@ -168,9 +173,11 @@ export default {
 		},
 		insertDivider() {
 			this.editorCtx.insertDivider();
+			uni.hideKeyboard()
 		},
 		redo() {
 			this.editorCtx.redo();
+			uni.hideKeyboard()
 		},
 		showMore() {
 			this.showMoreTool = !this.showMoreTool;
@@ -179,10 +186,12 @@ export default {
 		setBold() {
 			this.showBold = !this.showBold;
 			this.editorCtx.format('bold');
+			uni.hideKeyboard()
 		},
 		setItalic() {
 			this.showItalic = !this.showItalic;
 			this.editorCtx.format('italic');
+			uni.hideKeyboard()
 		},
 		checkStatus(name, detail, obj) {
 			if (detail.hasOwnProperty(name)) {
@@ -216,18 +225,22 @@ export default {
 		setIns() {
 			this.showIns = !this.showIns;
 			this.editorCtx.format('ins');
+			uni.hideKeyboard()
 		},
 		setHeader() {
 			this.showHeader = !this.showHeader;
 			this.editorCtx.format('header', this.showHeader ? 'H2' : false);
+			uni.hideKeyboard()
 		},
 		setCenter() {
 			this.showCenter = !this.showCenter;
 			this.editorCtx.format('align', this.showCenter ? 'center' : false);
+			uni.hideKeyboard()
 		},
 		setRight() {
 			this.showRight = !this.showRight;
 			this.editorCtx.format('align', this.showRight ? 'right' : false);
+			uni.hideKeyboard()
 		},
 		showSetting() {
 			this.showSettingLayer = !this.showSettingLayer;

@@ -16,7 +16,7 @@
 		
 		
 		<!-- 悬浮 -->
-		<view>
+		<!-- <view>
 			<uni-fab
 				:pattern="pattern"
 				:content="content"
@@ -25,7 +25,7 @@
 				:direction="direction"
 				@trigger="trigger"
 			></uni-fab>
-		</view>
+		</view> -->
 		<!-- 悬浮 end -->
 		
     </view>
@@ -74,6 +74,7 @@
         onLoad(event) {
             // 目前在某些平台参数会被主动 decode，暂时这样处理。
 			this.r_id = event.r_id;
+			
 			this.getDetail()
         },
         methods: {

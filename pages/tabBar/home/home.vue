@@ -184,6 +184,7 @@
 			// 日记详情
 			toDiary(e) {
 				// uni.showToast({ title: '商品' + e.r_id, icon: 'none' });
+				console.log(e.r_id)
 				uni.navigateTo({
 					url: '../../diary/index?r_id=' + e.r_id
 				});
