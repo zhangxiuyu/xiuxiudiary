@@ -103,7 +103,7 @@
 	import uniCard from '@/components/uni-card/uni-card.vue'
 	
 	import *as http from '@/pages/tabBar/home/api.js'
-	
+	import mUpdateAppTip from '@/common/maozai-update/updateAppTip.vue'
 	export default {
 		components: {
 			uniBadge,
@@ -142,35 +142,18 @@
 				public_num:7,
 				protected_num:8,
 				notice_text:"[单行] 这是 NoticeBar 通告栏，这是 NoticeBar 通告栏，这是 NoticeBar 通告栏",
-				productList:[
-					// {
-					// 	r_id:1,
-					// 	img:"https://img-cdn-qiniu.dcloud.net.cn/uniapp/images/muwu.jpg",
-					// 	time:"2020-09-15 14:12:12",
-					// 	name:"张三",
-					// 	con:"那是一个秋意盎然、金风送爽的日子,我和父母一起来到了位于上师大旁的康健园.一踏进公园,一股浓郁的桂香扑鼻而来,泌人心脾,让我心旷神怡,只见一朵朵开得正烈的金色桂花,迎风而立,仿佛在向我招手.我们追着这桂香,走进了清幽的公园.",
-					// 	num:"点击数：123",
-					// },
-					// {
-					// 	r_id:2,
-					// 	img:"https://img-cdn-qiniu.dcloud.net.cn/uniapp/images/muwu.jpg",
-					// 	time:"2020-09-15 14:12:12",
-					// 	name:"张三",
-					// 	con:"那是一个秋意盎.",
-					// 	num:"点击数：123",
-					// },
-					// {
-					// 	r_id:3,
-					// 	img:"https://img-cdn-qiniu.dcloud.net.cn/uniapp/images/muwu.jpg",
-					// 	time:"2020-09-15 14:12:12",
-					// 	name:"张三",
-					// 	con:"那是一个秋意盎.",
-					// 	num:"点击数：123",
-					// }
-				],
+				productList:[],
 				page_total:1, // 总页数
 				page:1, 	  // 当前页
 				loadingText:'加载中...', 
+				/*~~~~~~~~ 更新 ~~~~~~~~~*/
+				version: '1.0.0',
+				update_type: 0, //0是热更新，1整包更新
+				update_url: '', //更新的地址
+				update_title: '发现新的版本，请点击升级',
+				update_des: '版本升级描述文件',
+				is_update_app: false,
+				is_forced_update: false, //是否强制升级
 			}
 		},
 		methods: {
@@ -189,8 +172,32 @@
 					url: '../../diary/index?r_id=' + e.r_id
 				});
 			},
+			//版本检测
+			getUpdateApp() {
+				this.$http
+					.get({
+						url: "version",
+						data: {},
+					})
+					.then((res) => {
+						console.log(res)
+						const data = res.data;
+						uni.setStorageSync('code_url', data.code_url)
+						//#ifdef APP-PLUS
+						plus.runtime.getProperty(plus.runtime.appid, widgetInfo => {
+							if (widgetInfo.version != data.version_num) {
+								this.update_url = data.url //更新的地址
+								this.is_update_app = true, ///是否强制更新，不能关闭
+								this.update_title = '发现新的版本，请点击升级'
+								this.update_des = data.content
+							}
+						})
+						//#endif
+					});
+			},
 		},
 		onLoad() {
+			this.getUpdateApp()
 			http.homeDiary({
 				page:this.page
 			}).then(res => {

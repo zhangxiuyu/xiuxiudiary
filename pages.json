@@ -59,6 +59,11 @@
 			"style": {
 				"navigationBarTitleText": "云凤翻译"
 			}
+		},{
+			"path": "pages/tabBar/calendar/index",
+			"style": {
+				"navigationBarTitleText": "老黄历"
+			}
 		},
 		{
 		    "path" : "pages/review/index/index",

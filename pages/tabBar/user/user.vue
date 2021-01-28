@@ -75,7 +75,12 @@ import *as http from "@/pages/tabBar/user/api.js"
 					{
 						url:'/pages/tabBar/user/index',
 						text:'云凤翻译',
-						img:'/static/img/user/point.png'},
+						img:'/static/img/user/point.png',
+					},{
+						url:'/pages/tabBar/calendar/index',
+						text:'老黄历',
+						img:'/static/img/user/calendar.png',
+					}
 				]
 			}
 		},

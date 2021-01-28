@@ -47,23 +47,7 @@
 			return {
 				date: currentDate,
 				time: '12:01',
-				tableList: [{
-							name: '张三',
-							hobby: '游泳'
-						},
-						{
-							name: '李四',
-							hobby: '绘画'
-						},
-						{
-							name: '王二',
-							hobby: '滑板'
-						},
-						{
-							name: '码字',
-							hobby: '蹦极'
-						}
-					]
+				tableList: []
 			}
 		},
 		methods: {
@@ -80,22 +64,26 @@
 				}
 				month = month > 9 ? month : '0' + month;;
 				day = day > 9 ? day : '0' + day;
-				this.getCalendar(`${year}-${month}-${day}`)
+				this.getCalendar(year,month,day)
 				return `${year}-${month}-${day}`;
 			},
 			bindDateChange: function(e) {
 			    this.date = e.target.value
+				const str = this.date.split('-')
+				this.getCalendar(str[0],str[1],str[2])
 			},
-			getCalendar(time){
+			getCalendar(year,month,day){
 				this.$http
 					.get({
 						url: "getCalendar",
 						data: {
-							time:time
+							year:year,
+							month:month,
+							day:day,
 						},
 					})
 					.then((res) => {
-						console.log(res)
+						this.tableList = res.data
 					});
 			}
 		}
