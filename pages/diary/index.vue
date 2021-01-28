@@ -93,7 +93,8 @@
 							author_name:res.username,
 							published_at:res.created_at
 						}
-					this.htmlString = res.html
+						console.log(res.html)
+					this.htmlString = res.html.replace('<img','<img style="width:100%;height:auto;display:block"')
 					
                 }).catch(err => {
                 	uni.showToast({

@@ -78,9 +78,7 @@
 		background: #f5f5f5;
 	}
 
-	/* #ifdef H5 */
 	.t-table>>>.t-tr:nth-child(2n) {
 		background: #f5f5f5;
 	}
-	/* #endif */
 </style>
