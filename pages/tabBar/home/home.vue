@@ -86,7 +86,10 @@
 			<!-- <view class="loading-text">{{ loadingText }}</view> -->
 		</view>
 		<!-- 日记列表 end -->
-		
+
+		<!-- 热更新 -->
+		<mUpdateAppTip @updateClose="updateClose" :update_title="update_title" :is_forced_update="is_forced_update"
+					   :update_des="update_des" :update_type="update_type" :update_url="update_url" :is_update_app="is_update_app"></mUpdateAppTip>
    </view>
 </template>
 
@@ -108,7 +111,8 @@
 		components: {
 			uniBadge,
 			uniNoticeBar,
-			uniCard
+			uniCard,
+			mUpdateAppTip
 		},
 		data() {
 			return {
@@ -188,7 +192,7 @@
 							if (widgetInfo.version != data.version_num) {
 								this.update_url = data.url //更新的地址
 								this.is_update_app = true, ///是否强制更新，不能关闭
-								this.update_title = '发现新的版本，请点击升级'
+										this.update_title = '发现新的版本，请点击升级'
 								this.update_des = data.content
 							}
 						})
