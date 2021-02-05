@@ -116,8 +116,8 @@
 				})
 				
 			},
-			onPullDownRefresh() {
-			    console.log('onPullDownRefresh'); 
+			onReachBottom() {
+			    console.log('onReachBottom'); 
 				if(this.page >= this.page_total){
 					this.loadingText = '没有了。';
 					return false;
@@ -126,7 +126,7 @@
 					http.diaryList({
 						page:this.page
 					}).then(res => {
-						res.lists;
+						res.lists = res.lists.reverse();
 						res.lists.map(x=>{
 							this.diaryList.unshift(x);
 						})

@@ -80,6 +80,10 @@ import *as http from "@/pages/tabBar/user/api.js"
 						url:'/pages/tabBar/calendar/index',
 						text:'老黄历',
 						img:'/static/img/user/calendar.png',
+					},{
+						url:'/pages/tabBar/game/dishu',
+						text:'打地鼠',
+						img:'/static/game/dishu.png',
 					}
 				]
 			}
