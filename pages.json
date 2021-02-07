@@ -69,6 +69,11 @@
 			"style": {
 				"navigationBarTitleText": "打地鼠"
 			}
+		},{
+			"path": "pages/tabBar/game/xigua",
+			"style": {
+				"navigationBarTitleText": "合成西瓜"
+			}
 		},
 		{
 		    "path" : "pages/review/index/index",

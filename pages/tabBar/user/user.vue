@@ -84,6 +84,10 @@ import *as http from "@/pages/tabBar/user/api.js"
 						url:'/pages/tabBar/game/dishu',
 						text:'打地鼠',
 						img:'/static/game/dishu.png',
+					},{
+						url:'/pages/tabBar/game/xigua',
+						text:'合成西瓜',
+						img:'/static/game/xigua.png',
 					}
 				]
 			}
