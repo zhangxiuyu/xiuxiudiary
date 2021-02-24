@@ -88,6 +88,10 @@ import *as http from "@/pages/tabBar/user/api.js"
 						url:'/pages/tabBar/game/xigua',
 						text:'合成西瓜',
 						img:'/static/game/xigua.png',
+					},{
+						url:'/pages/tabBar/video/index',
+						text:'电影院',
+						img:'/static/video/video.png',
 					}
 				]
 			}

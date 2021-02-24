@@ -74,6 +74,26 @@
 			"style": {
 				"navigationBarTitleText": "合成西瓜"
 			}
+		},{
+			"path": "pages/tabBar/video/index",
+			"style": {
+				"navigationBarTitleText": "电影院"
+			}
+		},{
+			"path": "pages/tabBar/video/search",
+			"style": {
+				"navigationBarTitleText": "电影搜索"
+			}
+		},{
+			"path": "pages/tabBar/video/detail",
+			"style": {
+				"navigationBarTitleText": "电影详情"
+			}
+		},{
+			"path": "pages/tabBar/video/play",
+			"style": {
+				"navigationBarTitleText": "播放"
+			}
 		},
 		{
 		    "path" : "pages/review/index/index",
